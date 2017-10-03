@@ -79,9 +79,9 @@
             },
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://git.gnome.org/browse/libgee",
-                    "tag": "0.20.0"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/libgee/0.20/libgee-0.20.0.tar.xz",
+                    "sha256": "21308ba3ed77646dda2e724c0e8d5a2f8d101fb05e078975a532d7887223c2bb"
                 }
             ]
         },
@@ -89,9 +89,9 @@
             "name": "gmime",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://git.gnome.org/browse/gmime",
-                    "branch": "gmime-2-6"
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz",
+                    "sha256": "7149686a71ca42a1390869b6074815106b061aaeaaa8f2ef8c12c191d9a79f6a"
                 }
             ]
         },
