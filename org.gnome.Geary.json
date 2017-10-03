@@ -46,11 +46,12 @@
     "cleanup": ["/include", "/lib/pkgconfig",
                 "/share/pkgconfig", "/share/aclocal",
                 "/man", "/share/man", "/share/gtk-doc",
-                "/share/vala",
+                "/share/vala", "/share/girepository-1", "/share/gir-1.0",
                 "*.la", "*.a"],
     "modules": [
         {
             "name": "gnome-doc-utils",
+            "cleanup": ["/bin", "/share/gnome-doc-utils", "/share/gnome", "/share/xml"],
             "build-options": {
                 "arch" : {
                     /* Lie about our arch - no actual compilation happens here. */
