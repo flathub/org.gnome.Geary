@@ -101,6 +101,10 @@
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/geary/0.12/geary-0.12.3.tar.xz",
                     "sha256": "87bbf8ed650e67932fe49e70071b8ba4d4df7296dbdbdb0150f29703f497ffa3"
+                },
+                {
+                    "type": "patch",
+                    "path": "0001-Ignore-network-unreachable-errors-completely.patch"
                 }
             ]
         }
