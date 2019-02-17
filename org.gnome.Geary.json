@@ -1,10 +1,12 @@
 /* flatpak-builder config for Geary. */
 {
     "app-id": "org.gnome.Geary",
+    "branch": "0.13",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.28",
+    "runtime-version": "3.30",
     "sdk": "org.gnome.Sdk",
     "command": "geary",
+
     "finish-args": [
         /* X11 + XShm access */
         "--share=ipc", "--socket=x11",
@@ -27,20 +29,17 @@
         /* Secrets access */
         "--talk-name=org.freedesktop.secrets",
 
+        /* GOA support */
+        "--talk-name=org.gnome.ControlCenter",
+        "--talk-name=org.gnome.OnlineAccounts",
+
         /* Needed for dconf to work */
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
 
-        /* Let view source keep on working as-is for now. Bug 779311. */
+        /* Let view source keep on working as-sis for now. Bug 779311. */
         "--filesystem=/tmp"
     ],
-    "build-options" : {
-        "cflags": "-O2 -g",
-        "cxxflags": "-O2 -g",
-        "env": {
-            "V": "1"
-        }
-    },
     "cleanup": ["/include", "/lib/pkgconfig",
                 "/share/pkgconfig", "/share/aclocal",
                 "/man", "/share/man", "/share/gtk-doc",
@@ -48,34 +47,10 @@
                 "*.la", "*.a"],
     "modules": [
         {
-            "name": "gnome-doc-utils",
-            "cleanup": ["/bin", "/share/gnome-doc-utils", "/share/gnome", "/share/xml"],
-            "build-options": {
-                "arch" : {
-                    /* Lie about our arch - no actual compilation happens here. */
-                    "arm": {
-                        "config-opts": [ "--build=amd64" ]
-                    },
-                    "aarch64": {
-                        "config-opts": [ "--build=amd64" ]
-                    }
-                }            },
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-doc-utils/0.20/gnome-doc-utils-0.20.10.tar.xz",
-                    "sha256": "cb0639ffa9550b6ddf3b62f3b1add92fb92ab4690d351f2353cffe668be8c4a6"
-                }
-            ]
-        },
-        {
             "name": "libgee",
-            "build-options" : {
-                "env": {
-                    "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_GIRDIR": "/app/share/gir-1.0",
-                    "PKG_CONFIG_GOBJECT_INTROSPECTION_1_0_TYPELIBDIR": "/app/lib/girepository-1.0"
-                }
-            },
+            "config-opts" : [
+                "--enable-introspection=no"
+            ],
             "sources": [
                 {
                     "type": "archive",
@@ -95,12 +70,45 @@
             ]
         },
         {
-            "name": "geary",
+            "name": "gnome-online-accounts",
+            "config-opts": [
+                "--disable-telepathy",
+                "--disable-documentation",
+                "--disable-backend",
+                /* Enabling debug via configure causes both -g and -O0
+                   to be set, which is bad since the former is
+                   redundant with the default fd.o build-options,
+                   and the latter conflicts with them. So disable
+                   debug instead. */
+                "--enable-debug=no"
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/geary/0.12/geary-0.12.4.tar.xz",
-                    "sha256": "b5224cb3f07d6856acc67b3242785c115fa1bba1f9677267823bdfe9e484d307"
+                    "url": "https://download.gnome.org/sources/gnome-online-accounts/3.30/gnome-online-accounts-3.30.2.tar.xz",
+                    "sha256": "05c7e588c884a4145db376880303588f74b76d1fa11afbeccb74c6eff36b2fdc"
+                }
+            ]
+        },
+        {
+            "name": "libunwind",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.2.1.tar.gz",
+                    "sha256": "3f3ecb90e28cbe53fba7a4a27ccce7aad188d3210bb1964a923a731a27a75acb"
+                }
+            ]
+        },
+        {
+            "name": "geary",
+            "buildsystem": "meson",
+            "builddir": true,
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/geary/0.13/geary-0.13.0.tar.xz",
+                    "sha256": "4fd9bca851678b623c124e6e7ccb3629c304b7c025a370d0a6524bdb633dbe7f"
                 }
             ]
         }
