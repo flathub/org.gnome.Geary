@@ -109,6 +109,10 @@
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/geary/0.13/geary-0.13.2.tar.xz",
                     "sha256": "730283983ad4b9bd274afee53793ea578b1fb3e52485f2402334d479dfffe3ba"
+                },
+                {
+                    "type": "patch",
+                    "path": "168-smtp-auth.patch"
                 }
             ]
         }
