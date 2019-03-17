@@ -130,8 +130,9 @@
             "buildsystem": "cmake-ninja",
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/evolution-data-server.git"
+                    "type": "archive",
+                    "url": "http://ftp.acc.umu.se/pub/GNOME/sources/evolution-data-server/3.32/evolution-data-server-3.32.0.tar.xz",
+                    "sha256": "8e10b84974e483322e07a97c57dff56ffb208aa0c33e39a13208d6c52470ddde"
                 }
             ]
         },
@@ -149,8 +150,9 @@
             ],
             "sources": [
                 {
-                    "type": "git",
-                    "url": "https://gitlab.gnome.org/GNOME/folks.git"
+                    "type": "archive",
+                    "url": "http://ftp.acc.umu.se/pub/GNOME/sources/folks/0.11/folks-0.11.4.tar.xz",
+                    "sha256": "a7b03ed30373e29f62fc3e6f498adce2d4909b852608fc2058a02fda9f80189a"
                 }
             ]
         },
