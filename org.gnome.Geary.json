@@ -3,7 +3,7 @@
     "app-id": "org.gnome.Geary",
     "branch": "stable",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.30",
+    "runtime-version": "3.32",
     "sdk": "org.gnome.Sdk",
     "command": "geary",
 
@@ -36,6 +36,11 @@
         /* Unity launcher access */
         "--talk-name=com.canonical.Unity",
 
+        /* Folks contact and avatar support (via EDS) */
+        "--talk-name=org.gnome.evolution.dataserver.AddressBook9",
+        "--talk-name=org.gnome.evolution.dataserver.Sources5",
+        "--filesystem=xdg-cache/evolution/addressbook:ro",
+
         /* Needed for dconf to work */
         "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
         "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
@@ -63,16 +68,6 @@
             ]
         },
         {
-            "name": "gmime",
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz",
-                    "sha256": "7149686a71ca42a1390869b6074815106b061aaeaaa8f2ef8c12c191d9a79f6a"
-                }
-            ]
-        },
-        {
             "name": "gnome-online-accounts",
             "config-opts": [
                 "--disable-telepathy",
@@ -90,6 +85,89 @@
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/gnome-online-accounts/3.30/gnome-online-accounts-3.30.2.tar.xz",
                     "sha256": "05c7e588c884a4145db376880303588f74b76d1fa11afbeccb74c6eff36b2fdc"
+                }
+            ]
+        },
+        {
+            "name": "libical",
+            "cleanup": [
+              "/lib/cmake"
+            ],
+            "buildsystem": "cmake-ninja",
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DCMAKE_INSTALL_LIBDIR=lib",
+                "-DBUILD_SHARED_LIBS:BOOL=ON"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://github.com/libical/libical/releases/download/v2.0.0/libical-2.0.0.tar.gz",
+                    "sha256": "654c11f759c19237be39f6ad401d917e5a05f36f1736385ed958e60cf21456da"
+                }
+            ]
+        },
+        {
+            "name": "evolution-data-server",
+            "cleanup": [
+                "/lib/cmake",
+                "/lib/evolution-data-server/*-backends",
+                "/libexec",
+                "/share/dbus-1/services"
+            ],
+            "config-opts": [
+                "-DCMAKE_BUILD_TYPE=Release",
+                "-DENABLE_GTK=ON",
+                "-DENABLE_GOA=ON",
+                "-DENABLE_UOA=OFF",
+                "-DENABLE_GOOGLE_AUTH=OFF",
+                "-DENABLE_GOOGLE=OFF",
+                "-DENABLE_WITH_PHONENUMBER=OFF",
+                "-DENABLE_VALA_BINDINGS=ON",
+                "-DENABLE_WEATHER=OFF",
+                "-DWITH_OPENLDAP=OFF",
+                "-DWITH_LIBDB=OFF",
+                "-DENABLE_INTROSPECTION=ON",
+                "-DENABLE_INSTALLED_TESTS=OFF",
+                "-DENABLE_GTK_DOC=OFF",
+                "-DENABLE_EXAMPLES=OFF"
+            ],
+            "buildsystem": "cmake-ninja",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.acc.umu.se/pub/GNOME/sources/evolution-data-server/3.32/evolution-data-server-3.32.0.tar.xz",
+                    "sha256": "8e10b84974e483322e07a97c57dff56ffb208aa0c33e39a13208d6c52470ddde"
+                }
+            ]
+        },
+        {
+            "name": "folks",
+            "cleanup": [
+                "/bin",
+                "/share/GConf"
+            ],
+            "config-opts": [
+                "--disable-telepathy-backend",
+                "--disable-inspect-tool",
+                "--disable-import-tool",
+                "--disable-fatal-warnings"
+            ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "http://ftp.acc.umu.se/pub/GNOME/sources/folks/0.11/folks-0.11.4.tar.xz",
+                    "sha256": "a7b03ed30373e29f62fc3e6f498adce2d4909b852608fc2058a02fda9f80189a"
+                }
+            ]
+        },
+        {
+            "name": "gmime",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/gmime/2.6/gmime-2.6.23.tar.xz",
+                    "sha256": "7149686a71ca42a1390869b6074815106b061aaeaaa8f2ef8c12c191d9a79f6a"
                 }
             ]
         },
@@ -141,6 +219,10 @@
                     "type" : "archive",
                     "url" : "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/libunity/7.1.4+16.04.20180209.1-0ubuntu1/libunity_7.1.4+16.04.20180209.1.orig.tar.gz",
                     "sha256" : "d4013500c0a972ecea5ba26e3567ee5d4c3eae481281badbbbe3cbaeab5f389b"
+                },
+                {
+                    "type": "patch",
+                    "path": "0001-Fix-build-errors-but-not-warnings-with-vala-044.patch"
                 }
             ]
         },
@@ -152,8 +234,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/geary/0.13/geary-0.13.3.tar.xz",
-                    "sha256": "f1d7a9192f927a8889767d0c0a62598bafd1c3d1f4e6a9bd4397ee2084b1710c"
+                    "url": "https://download.gnome.org/sources/geary/3.32/geary-3.32.0.tar.xz",
+                    "sha256": "b29882997c0959038c45c4af080d0bc8fc52a7b6fcc79089f32ebccfebfcb4d7"
                 }
             ]
         }
