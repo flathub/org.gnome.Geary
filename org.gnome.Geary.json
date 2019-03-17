@@ -234,8 +234,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/geary/0.13/geary-0.13.3.tar.xz",
-                    "sha256": "f1d7a9192f927a8889767d0c0a62598bafd1c3d1f4e6a9bd4397ee2084b1710c"
+                    "url": "https://download.gnome.org/sources/geary/3.32/geary-3.32.0.tar.xz",
+                    "sha256": "b29882997c0959038c45c4af080d0bc8fc52a7b6fcc79089f32ebccfebfcb4d7"
                 }
             ]
         }
