@@ -217,12 +217,8 @@
             "sources" : [
                 {
                     "type" : "archive",
-                    "url" : "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/libunity/7.1.4+16.04.20180209.1-0ubuntu1/libunity_7.1.4+16.04.20180209.1.orig.tar.gz",
-                    "sha256" : "d4013500c0a972ecea5ba26e3567ee5d4c3eae481281badbbbe3cbaeab5f389b"
-                },
-                {
-                    "type": "patch",
-                    "path": "0001-Fix-build-errors-but-not-warnings-with-vala-044.patch"
+                    "url" : "https://launchpad.net/ubuntu/+archive/primary/+sourcefiles/libunity/7.1.4+19.04.20190319-0ubuntu1/libunity_7.1.4+19.04.20190319.orig.tar.gz",
+                    "sha256" : "56ecb380d74bf74caba193d9e8ad6b0c85ccf9eeb461bc9731c2b8636e1f1492"
                 }
             ]
         },
