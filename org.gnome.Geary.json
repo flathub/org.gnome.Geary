@@ -194,11 +194,11 @@
                 },
                 {
                     "type": "patch",
-                    "path": "0001-Only-require-dbus-glib-if-needed-at-buildtime.patch"
+                    "path": "patches/folks-0001-Only-require-dbus-glib-if-needed-at-buildtime.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "0001-tests-Remove-errornous-c-header-reference-of-extern-method.patch"
+                    "path": "patches/folks-0001-tests-Remove-errornous-c-header-reference-of-extern-method.patch"
                 }
             ]
         },
@@ -262,7 +262,7 @@
                 },
                 {
                     "type": "patch",
-                    "path": "dee-1.2.7-deprecated-g_type_class_add_private.patch"
+                    "path": "patches/dee-1.2.7-deprecated-g_type_class_add_private.patch"
                 },
                 {
                     "type": "shell",
@@ -287,7 +287,7 @@
                 },
                 {
                     "type": "patch",
-                    "path": "libdbusmenu-no-werror.patch"
+                    "path": "patches/libdbusmenu-no-werror.patch"
                 },
                 {
                     "type": "shell",
@@ -308,11 +308,11 @@
                 },
                 {
                     "type": "patch",
-                    "path": "0001-Fix-build-errors-but-not-warnings-with-vala-044.patch"
+                    "path": "patches/libunity-0001-Fix-build-errors-but-not-warnings-with-vala-044.patch"
                 },
                 {
                     "type": "patch",
-                    "path": "libunity-ftb-abstract-ctor.patch"
+                    "path": "patches/libunity-ftb-abstract-ctor.patch"
                 }
             ]
         },
