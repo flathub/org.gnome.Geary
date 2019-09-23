@@ -1,9 +1,10 @@
-/* flatpak-builder config for Geary. */
+/* Flathub build for Geary stable releases. */
+
 {
     "app-id": "org.gnome.Geary",
     "branch": "stable",
     "runtime": "org.gnome.Platform",
-    "runtime-version": "3.32",
+    "runtime-version": "3.34",
     "sdk": "org.gnome.Sdk",
     "command": "geary",
 
@@ -23,15 +24,15 @@
         /* Needs to talk to the network: */
         "--share=network",
 
-        /* Notification access */
-        "--talk-name=org.freedesktop.Notifications",
-
         /* Secrets access */
         "--talk-name=org.freedesktop.secrets",
 
         /* GOA support */
         "--talk-name=org.gnome.ControlCenter",
         "--talk-name=org.gnome.OnlineAccounts",
+
+        /* Contacts adding and editing */
+        "--talk-name=org.gnome.Contacts",
 
         /* Unity launcher access */
         "--talk-name=com.canonical.Unity",
@@ -41,9 +42,8 @@
         "--talk-name=org.gnome.evolution.dataserver.Sources5",
         "--filesystem=xdg-cache/evolution/addressbook:ro",
 
-        /* Needed for dconf to work */
-        "--filesystem=xdg-run/dconf", "--filesystem=~/.config/dconf:ro",
-        "--talk-name=ca.desrt.dconf", "--env=DCONF_USER_CONFIG_DIR=.config/dconf",
+        /* Migrate GSettings into the sandbox */
+        "--metadata=X-DConf=migrate-path=/org/gnome/Geary/",
 
         /* Let view source keep on working as-sis for now. Bug 779311. */
         "--filesystem=/tmp"
@@ -54,19 +54,6 @@
                 "/share/vala", "/share/girepository-1", "/share/gir-1.0",
                 "*.la", "*.a"],
     "modules": [
-        {
-            "name": "libgee",
-            "config-opts" : [
-                "--enable-introspection=no"
-            ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://download.gnome.org/sources/libgee/0.20/libgee-0.20.1.tar.xz",
-                    "sha256": "bb2802d29a518e8c6d2992884691f06ccfcc25792a5686178575c7111fea4630"
-                }
-            ]
-        },
         {
             "name": "gnome-online-accounts",
             "config-opts": [
@@ -83,8 +70,29 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-online-accounts/3.32/gnome-online-accounts-3.32.0.tar.xz",
-                    "sha256": "1c19e65771c8d16fa0016ab70d9a1ee2b75a84aeeedd24527a4e41b132e8d4aa"
+                    "url": "https://download.gnome.org/sources/gnome-online-accounts/3.34/gnome-online-accounts-3.34.0.tar.xz",
+                    "sha256": "c44fbce4eeb54703a2ab4954d54f11eb29666f9cf61b5275b9fe0fc033377f57"
+                }
+            ]
+        },
+        {
+            "name" : "gspell",
+            "config-opts" : [
+                "--disable-gtk-doc",
+                "--disable-gtk-doc-html"
+            ],
+            "cleanup" : [
+                "/bin",
+                "/include",
+                "/lib/pkgconfig",
+                "*.la",
+                "/share"
+            ],
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url": "https://download.gnome.org/sources/gspell/1.8/gspell-1.8.2.tar.xz",
+                    "sha256": "bb9195c3a95bacf556d0203e9691f7489e0d3bc5ae1e5a440c89b2f2435d3ed6"
                 }
             ]
         },
@@ -97,13 +105,28 @@
             "config-opts": [
                 "-DCMAKE_BUILD_TYPE=Release",
                 "-DCMAKE_INSTALL_LIBDIR=lib",
-                "-DBUILD_SHARED_LIBS:BOOL=ON"
+                "-DBUILD_SHARED_LIBS:BOOL=ON",
+                "-DICAL_GLIB=true",
+                "-DGOBJECT_INTROSPECTION=true",
+                "-DICAL_GLIB_VAPI=true",
+                "-DICAL_BUILD_DOCS=false"
             ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://github.com/libical/libical/releases/download/v3.0.5/libical-3.0.5.tar.gz",
-                    "sha256": "7ad550c8c49c9b9983658e3ab3e68b1eee2439ec17b169a6b1e6ecb5274e78e6"
+                    "url": "https://github.com/libical/libical/releases/download/v3.0.6/libical-3.0.6.tar.gz",
+                    "sha256": "5c8a21c2b732ece4a33e5c862970b4f35a8548bbcda50de5695f6fc211ac4d97"
+                }
+            ]
+        },
+        {
+            "name": "intltool",
+            "cleanup": [ "*" ],
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz",
+                    "sha256": "67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
                 }
             ]
         },
@@ -136,8 +159,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/evolution-data-server/3.32/evolution-data-server-3.32.3.tar.xz",
-                    "sha256": "6481f385dd9977b6d8442f356210921ac63244cb5a188c6986b72ebe37f7a2eb"
+                    "url": "https://download.gnome.org/sources/evolution-data-server/3.32/evolution-data-server-3.32.4.tar.xz",
+                    "sha256": "83f67cb4b680e892b22b51bcde64c788b7ac63e92a99de401fb347e3794f4c7f"
                 }
             ]
         },
@@ -158,6 +181,14 @@
                     "type": "archive",
                     "url": "https://download.gnome.org/sources/folks/0.12/folks-0.12.1.tar.xz",
                     "sha256": "3ca9f2d50fdf5a7a3d3f59c49bd54ceaf8d8181938762370e07535f86d36d475"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/folks-0001-Only-require-dbus-glib-if-needed-at-buildtime.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/folks-0001-tests-Remove-errornous-c-header-reference-of-extern-method.patch"
                 }
             ]
         },
@@ -172,26 +203,50 @@
             ]
         },
         {
-            "name": "libunwind",
+            "name": "libhandy",
+            "buildsystem": "meson",
+            "builddir": true,
+            "config-opts": [
+                "-Dglade_catalog=disabled"
+            ],
             "sources": [
                 {
                     "type": "archive",
-                    "url": "http://download.savannah.nongnu.org/releases/libunwind/libunwind-1.3.1.tar.gz",
-                    "sha256": "43997a3939b6ccdf2f669b50fdb8a4d3205374728c2923ddc2354c65260214f8"
+                    "url": "https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.10/libhandy-v0.0.10.tar.bz2",
+                    "sha256": "366350c0c15f53b8de4032780de4c5a5c41dfe2001d7b3d39ec6399123c2cb73"
                 }
             ]
         },
         /* Start of Unity launcher badge support */
         {
+            "name" : "gnome-common",
+            "sources" : [
+                {
+                    "type" : "archive",
+                    "url" : "https://download.gnome.org/sources/gnome-common/3.18/gnome-common-3.18.0.tar.xz",
+                    "sha256" : "22569e370ae755e04527b76328befc4c73b62bfd4a572499fde116b8318af8cf"
+                }
+            ]
+        },
+        {
             "name" : "libdee",
-            "build-options" : {
-                "cflags" : "-Wno-error=misleading-indentation"
-            },
+            "config-opts" : [
+                "--enable-maintainer-flags=no",
+                "--with-pygi_overrides_dir=/app/lib/python3.7/site-packages/gi/overrides"
+            ],
             "sources" : [
                 {
                     "type" : "archive",
                     "url" : "https://launchpad.net/dee/1.0/1.2.7/+download/dee-1.2.7.tar.gz",
-                    "md5" : "b92f27f0a99cac24c2128880601bb7d7"
+                    "sha256" : "1bf0336ce684aa0f48d6eae2469628c1a9b43695a77443bc31a5790aa673bf8a"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/dee-1.2.7-deprecated-g_type_class_add_private.patch"
+                },
+                {
+                    "type": "shell",
+                    "commands": [ "autoreconf -ifv" ]
                 }
             ]
         },
@@ -208,12 +263,23 @@
                 {
                     "type" : "archive",
                     "url" : "https://launchpad.net/libdbusmenu/16.04/16.04.0/+download/libdbusmenu-16.04.0.tar.gz",
-                    "md5" : "3c05d53053b3ea69384b5f93d7a4c7c4"
+                    "sha256" : "b9cc4a2acd74509435892823607d966d424bd9ad5d0b00938f27240a1bfa878a"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/libdbusmenu-no-werror.patch"
+                },
+                {
+                    "type": "shell",
+                    "commands": [ "autoreconf -ifv" ]
                 }
             ]
         },
         {
             "name" : "libunity",
+            "config-opts" : [
+                "--with-pygi_overrides_dir=/app/lib/python3.7/site-packages/gi/overrides"
+            ],
             "sources" : [
                 {
                     "type" : "archive",
@@ -222,20 +288,33 @@
                 },
                 {
                     "type": "patch",
-                    "path": "0001-Fix-build-errors-but-not-warnings-with-vala-044.patch"
+                    "path": "patches/libunity-0001-Fix-build-errors-but-not-warnings-with-vala-044.patch"
+                },
+                {
+                    "type": "patch",
+                    "path": "patches/libunity-ftb-abstract-ctor.patch"
                 }
             ]
         },
         /* End of deps for Unity launcher badge support */
         {
-            "name": "geary",
-            "buildsystem": "meson",
-            "builddir": true,
+            "name": "libytnef",
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/geary/3.32/geary-3.32.2.tar.xz",
-                    "sha256": "f821632356f1c0f694e6fe7c301952fa393e3522a0151f718348ec80f01fe569"
+                    "url": "https://github.com/Yeraze/ytnef/archive/v1.9.3.tar.gz",
+                    "sha256": "41a0033bde33c86a7e4aa4e14bb822dd03084098638e7d6557263e47e80b4f4f"
+                }
+            ]
+        },
+        {
+            "name": "geary",
+            "buildsystem": "meson",
+            "sources": [
+                {
+                    "type": "archive",
+                    "url": "https://download.gnome.org/sources/geary/3.34/geary-3.34.0.tar.xz",
+                    "sha256": "c4f4553cf79ec6dcc2690a0a08df68b3378515d9d230ccf71024aaec9ef4b7b3"
                 }
             ]
         }
