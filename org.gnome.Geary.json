@@ -31,6 +31,9 @@
         "--talk-name=org.gnome.ControlCenter",
         "--talk-name=org.gnome.OnlineAccounts",
 
+        /* Contacts adding and editing */
+        "--talk-name=org.gnome.Contacts",
+
         /* Unity launcher access */
         "--talk-name=com.canonical.Unity",
 
