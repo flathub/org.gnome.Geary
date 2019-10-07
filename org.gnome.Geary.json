@@ -212,8 +212,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.10/libhandy-v0.0.10.tar.bz2",
-                    "sha256": "366350c0c15f53b8de4032780de4c5a5c41dfe2001d7b3d39ec6399123c2cb73"
+                    "url": "https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.11/libhandy-v0.0.11.tar.bz2",
+                    "sha256": "cfa0089046a0b04c128e0ff24422058611cb53173ba68a7bbeb028b994a16d17"
                 }
             ]
         },
@@ -313,8 +313,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/geary/3.34/geary-3.34.0.tar.xz",
-                    "sha256": "c4f4553cf79ec6dcc2690a0a08df68b3378515d9d230ccf71024aaec9ef4b7b3"
+                    "url": "https://download.gnome.org/sources/geary/3.34/geary-3.34.1.tar.xz",
+                    "sha256": "7ba4948312f556d972a8e899ec62f677862714b3b4817403c4eca614d03ba5af"
                 }
             ]
         }
