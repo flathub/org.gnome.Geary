@@ -38,7 +38,7 @@
         "--talk-name=com.canonical.Unity",
 
         /* Folks contact and avatar support (via EDS) */
-        "--talk-name=org.gnome.evolution.dataserver.AddressBook9",
+        "--talk-name=org.gnome.evolution.dataserver.AddressBook10",
         "--talk-name=org.gnome.evolution.dataserver.Sources5",
         "--filesystem=xdg-cache/evolution/addressbook:ro",
 
@@ -70,8 +70,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/gnome-online-accounts/3.34/gnome-online-accounts-3.34.0.tar.xz",
-                    "sha256": "c44fbce4eeb54703a2ab4954d54f11eb29666f9cf61b5275b9fe0fc033377f57"
+                    "url": "https://download.gnome.org/sources/gnome-online-accounts/3.34/gnome-online-accounts-3.34.1.tar.xz",
+                    "sha256": "4832ca8e48d3a497fc676e7b6f146009ab4206995362977b9805aa39f164783a"
                 }
             ]
         },
@@ -159,8 +159,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/evolution-data-server/3.32/evolution-data-server-3.32.4.tar.xz",
-                    "sha256": "83f67cb4b680e892b22b51bcde64c788b7ac63e92a99de401fb347e3794f4c7f"
+                    "url": "https://download.gnome.org/sources/evolution-data-server/3.34/evolution-data-server-3.34.2.tar.xz",
+                    "sha256": "3eb89f82eee042884a8d65737564fe48829c3ae187f067cbcdec2b088d2fe89b"
                 }
             ]
         },
@@ -179,16 +179,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/folks/0.12/folks-0.12.1.tar.xz",
-                    "sha256": "3ca9f2d50fdf5a7a3d3f59c49bd54ceaf8d8181938762370e07535f86d36d475"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/folks-0001-Only-require-dbus-glib-if-needed-at-buildtime.patch"
-                },
-                {
-                    "type": "patch",
-                    "path": "patches/folks-0001-tests-Remove-errornous-c-header-reference-of-extern-method.patch"
+                    "url": "https://download.gnome.org/sources/folks/0.13/folks-0.13.1.tar.xz",
+                    "sha256": "3df1c663b82fe211aead2b31cae1fc41d124e85436375762f6745c45ba46aa5d"
                 }
             ]
         },
@@ -313,8 +305,8 @@
             "sources": [
                 {
                     "type": "archive",
-                    "url": "https://download.gnome.org/sources/geary/3.34/geary-3.34.1.tar.xz",
-                    "sha256": "7ba4948312f556d972a8e899ec62f677862714b3b4817403c4eca614d03ba5af"
+                    "url": "https://download.gnome.org/sources/geary/3.34/geary-3.34.2.tar.xz",
+                    "sha256": "75cf5fdcc534bf5bbdf223fd4b976a627ecaf16cf87a4bea51ef94fc2f38d2a8"
                 }
             ]
         }
