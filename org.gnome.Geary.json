@@ -54,6 +54,7 @@
                 "/share/vala", "/share/girepository-1", "/share/gir-1.0",
                 "*.la", "*.a"],
     "modules": [
+        "shared-modules/intltool/intltool-0.51.json",
         {
             "name": "gnome-online-accounts",
             "config-opts": [
@@ -116,17 +117,6 @@
                     "type": "archive",
                     "url": "https://github.com/libical/libical/releases/download/v3.0.6/libical-3.0.6.tar.gz",
                     "sha256": "5c8a21c2b732ece4a33e5c862970b4f35a8548bbcda50de5695f6fc211ac4d97"
-                }
-            ]
-        },
-        {
-            "name": "intltool",
-            "cleanup": [ "*" ],
-            "sources": [
-                {
-                    "type": "archive",
-                    "url": "https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz",
-                    "sha256": "67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd"
                 }
             ]
         },
