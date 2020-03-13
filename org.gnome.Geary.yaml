@@ -1,0 +1,206 @@
+---
+# Flatpak builder manifest for Geary.
+#
+# When updating this file after branching a new stable release, the
+# following should be updated:
+#
+# - app branch and geary source branches
+# - remove app tags and desktop-file-name-prefix
+#
+# When updating the Flathub manifest, copy the stable manifest over it
+# and pin each source to a specific tarball.
+#
+
+app-id: org.gnome.Geary
+branch: stable
+runtime: org.gnome.Platform
+runtime-version: "3.36"
+sdk: org.gnome.Sdk
+command: geary
+
+finish-args:
+  # X11 + XShm access
+  - "--share=ipc"
+  - "--socket=x11"
+
+  # Wayland access
+  - "--socket=wayland"
+
+  # OpenGL access for WK2
+  - "--device=dri"
+
+  # Needs to talk to the network
+  - "--share=network"
+
+  # Secrets access
+  - "--talk-name=org.freedesktop.secrets"
+
+  # Contacts open/edit support
+  - "--talk-name=org.gnome.Contacts"
+
+  # GOA support
+  - "--talk-name=org.gnome.ControlCenter"
+  - "--talk-name=org.gnome.OnlineAccounts"
+
+  # Folks contact and avatar support (via EDS)
+  - "--talk-name=org.gnome.evolution.dataserver.AddressBook10"
+  - "--talk-name=org.gnome.evolution.dataserver.Sources5"
+  - "--filesystem=xdg-cache/evolution/addressbook:ro"
+
+  # Migrate GSettings into the sandbox
+  - "--metadata=X-DConf=migrate-path=/org/gnome/Geary/"
+
+  # Let view source keep on working as-sis for now. Bug 779311. */
+  - "--filesystem=/tmp"
+
+cleanup:
+  - /include
+  - /lib/pkgconfig
+  - /man
+  - /share/aclocal
+  - /share/gir-1.0
+  - /share/girepository-1
+  - /share/gtk-doc
+  - /share/man
+  - /share/pkgconfig
+  - /share/vala
+  - "*.la"
+  - "*.a"
+
+modules:
+
+  # Geary dependency
+  - name: gnome-online-accounts
+    config-opts:
+      - "--disable-telepathy"
+      - "--disable-documentation"
+      - "--disable-backend"
+      # Enabling debug via configure causes both -g and -O0 # to be
+      # set, which is bad since the former is redundant with the
+      # default fd.o build-options, and the latter conflicts with
+      # them. So disable debug instead.
+      - "--enable-debug=no"
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.36/gnome-online-accounts-3.36.0.tar.xz
+        sha256: 1c8f62990833ca41188dbb80c5e99d99b57a62608ca675bbcd37bc2244742f2e
+
+  # Geary dependency
+  - name: gspell
+    config-opts:
+      - "--disable-gtk-doc"
+      - "--disable-gtk-doc-html"
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz
+        sha256: 819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5
+    cleanup:
+      - /bin
+      - /share
+
+  # EDS dependency
+  - name: libical
+    buildsystem: cmake-ninja
+    config-opts:
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DCMAKE_INSTALL_LIBDIR=lib"
+      - "-DBUILD_SHARED_LIBS:BOOL=ON"
+      - "-DICAL_GLIB=true"
+      - "-DGOBJECT_INTROSPECTION=true"
+      - "-DICAL_GLIB_VAPI=true"
+      - "-DICAL_BUILD_DOCS=false"
+    sources:
+      - type: archive
+        url: https://github.com/libical/libical/releases/download/v3.0.8/libical-3.0.8.tar.gz
+        sha256: 09fecacaf75ba5a242159e3a9758a5446b5ce4d0ab684f98a7040864e1d1286f
+    cleanup:
+      - /lib/cmake
+
+  # EDS dependency
+  - name: "intltool"
+    sources:
+      - type: archive
+        url: https://launchpad.net/intltool/trunk/0.51.0/+download/intltool-0.51.0.tar.gz
+        sha256: 67c74d94196b153b774ab9f89b2fa6c6ba79352407037c8c14d5aeb334e959cd
+    cleanup:
+      - "*"
+
+  # Geary dependency
+  - name: evolution-data-server
+    buildsystem: cmake-ninja
+    config-opts:
+      - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DENABLE_GTK=ON"
+      - "-DENABLE_GOA=ON"
+      - "-DENABLE_GOOGLE=OFF"
+      - "-DENABLE_VALA_BINDINGS=ON"
+      - "-DENABLE_WEATHER=OFF"
+      - "-DWITH_OPENLDAP=OFF"
+      - "-DWITH_LIBDB=OFF"
+      - "-DENABLE_INTROSPECTION=ON"
+      - "-DENABLE_INSTALLED_TESTS=OFF"
+      - "-DENABLE_GTK_DOC=OFF"
+      - "-DENABLE_EXAMPLES=OFF"
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.0.tar.xz
+        sha256: d4d70e6658fb9e1f85639dcff315bbdddd3aa2de2ad069b1776af3fb9e9598ec
+    cleanup:
+      - /lib/cmake
+      - /lib/evolution-data-server/*-backends
+      - /libexec
+      - /share/dbus-1/services
+
+  # Geary dependency
+  - name: folks
+    buildsystem: meson
+    config-opts:
+      - "-Dtelepathy_backend=false"
+      - "-Dbluez_backend=false"
+      - "-Dinspect_tool=false"
+      - "-Dimport_tool=false"
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/folks/0.14/folks-0.14.0.tar.xz
+        sha256: d6e778da637d3b33fd9a6b45115e8157d8868211dc08b943d1075b5eb7282bb9
+    cleanup:
+      - /bin
+
+  # Geary dependency
+  - name: gmime
+    sources:
+      - type: archive
+        url: https://github.com/jstedfast/gmime/archive/3.2.6.tar.gz
+        sha256: 448671b673e26a2b03e5f241d73b38499e1f6a003cd216c0de88f927a12766e7
+
+  # Geary dependency
+  - name: libhandy
+    buildsystem: meson
+    config-opts:
+      - "-Dglade_catalog=disabled"
+    sources:
+      - type: archive
+        url: https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.13/libhandy-v0.0.13.tar.bz2
+        sha256: 507f92e173a6ab9c07f612d2758de434f1feeb72ca4a9dd7de16d9a2b533d60b
+
+  # Geary dependency
+  - name: libpeas
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/libpeas/1.26/libpeas-1.26.0.tar.xz
+        sha256: a976d77e20496479a8e955e6a38fb0e5c5de89cf64d9f44e75c2213ee14f7376
+
+  # Geary dependency
+  - name: "libytnef"
+    sources:
+      - type: archive
+        url: https://github.com/Yeraze/ytnef/archive/v1.9.3.tar.gz
+        sha256: 41a0033bde33c86a7e4aa4e14bb822dd03084098638e7d6557263e47e80b4f4f
+
+  - name: geary
+    buildsystem: meson
+    sources:
+      - type: archive
+        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.0.tar.xz
+        sha256: 8e26aaf9dc1d0112da4a7b6d636721c09adc9458f1aee92e93cd324f42e0bdf6
