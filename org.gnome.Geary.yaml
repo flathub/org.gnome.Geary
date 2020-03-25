@@ -206,3 +206,5 @@ modules:
         sha256: 8e26aaf9dc1d0112da4a7b6d636721c09adc9458f1aee92e93cd324f42e0bdf6
       - type: patch
         path: patches/0001-desktop-org.gnome.Geary.appdata.xml.in.in-Update-for.patch
+      - type: patch
+        path: patches/0001-Geary.RFC822.Message-Fix-Message-Id-header-not-being.patch
