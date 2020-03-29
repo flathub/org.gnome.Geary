@@ -92,8 +92,8 @@ modules:
       - "--disable-gtk-doc-html"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.8/gspell-1.8.1.tar.xz
-        sha256: 819a1d23c7603000e73f5e738bdd284342e0cd345fb0c7650999c31ec741bbe5
+        url: https://download.gnome.org/sources/gspell/1.8/gspell-1.8.3.tar.xz
+        sha256: 5ae514dd0216be069176accf6d0049d6a01cfa6a50df4bc06be85f7080b62de8
     cleanup:
       - /bin
       - /share
@@ -143,8 +143,8 @@ modules:
       - "-DENABLE_EXAMPLES=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.0.tar.xz
-        sha256: d4d70e6658fb9e1f85639dcff315bbdddd3aa2de2ad069b1776af3fb9e9598ec
+        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.1.tar.xz
+        sha256: 13122b2edddb98306207d2a35d5ccae25a90702769ca0a0b51653b5984986796
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -170,8 +170,8 @@ modules:
   - name: gmime
     sources:
       - type: archive
-        url: https://github.com/jstedfast/gmime/archive/3.2.6.tar.gz
-        sha256: 448671b673e26a2b03e5f241d73b38499e1f6a003cd216c0de88f927a12766e7
+        url: https://github.com/jstedfast/gmime/archive/3.2.7.tar.gz
+        sha256: 442db212b9ad71a13397b54cea742ab27cfcf95f43b3eb3d7ac4cec7cb4e59e5
 
   # Geary dependency
   - name: libhandy
@@ -202,9 +202,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.0.tar.xz
-        sha256: 8e26aaf9dc1d0112da4a7b6d636721c09adc9458f1aee92e93cd324f42e0bdf6
-      - type: patch
-        path: patches/0001-desktop-org.gnome.Geary.appdata.xml.in.in-Update-for.patch
-      - type: patch
-        path: patches/0001-Geary.RFC822.Message-Fix-Message-Id-header-not-being.patch
+        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.1.tar.xz
+        sha256: 03d04a44b60c874c66eee5cc5ffbf19f95b6fc7576d7f54ad78a2867ffaf301f
