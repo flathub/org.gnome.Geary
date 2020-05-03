@@ -112,7 +112,7 @@ modules:
     sources:
       - type: archive
         url: https://github.com/libical/libical/releases/download/v3.0.8/libical-3.0.8.tar.gz
-        sha256: 09fecacaf75ba5a242159e3a9758a5446b5ce4d0ab684f98a7040864e1d1286f
+        sha512: ce015e6d4c1c7cb4af7b45748ce8251c663f80f6a4357ddff6a97796642619abe882f4cadeca10cabeb1b25577869f436da15bca882e032eb3ff0475f6010d8b
     cleanup:
       - /lib/cmake
 
@@ -137,8 +137,8 @@ modules:
       - "-DENABLE_EXAMPLES=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.1.tar.xz
-        sha256: 13122b2edddb98306207d2a35d5ccae25a90702769ca0a0b51653b5984986796
+        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.2.tar.xz
+        sha256: 98e274cfec16cee6a4b3b9c7897f6e1136d00e4f31a0d66214925abbac76e97b
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -196,5 +196,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.1.tar.xz
-        sha256: 03d04a44b60c874c66eee5cc5ffbf19f95b6fc7576d7f54ad78a2867ffaf301f
+        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.2.tar.xz
+        sha512: a3cca301a3668eb2e70f8bfc147abef9088de4e822efab4ecc44830fbc394265d1fa37267a1f8fa97b6e8d1ac8a8adb76e5dd9e509490ac567e05bd243e8ea20
