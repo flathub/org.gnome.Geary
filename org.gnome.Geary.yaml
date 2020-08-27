@@ -137,8 +137,8 @@ modules:
       - "-DENABLE_EXAMPLES=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.2.tar.xz
-        sha256: 98e274cfec16cee6a4b3b9c7897f6e1136d00e4f31a0d66214925abbac76e97b
+        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.5.tar.xz
+        sha256: c555528c546d457be0dc0eaca5d766d4dfef7c408276cb05f9724c463bfe7fd9
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -196,5 +196,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.2.tar.xz
-        sha512: a3cca301a3668eb2e70f8bfc147abef9088de4e822efab4ecc44830fbc394265d1fa37267a1f8fa97b6e8d1ac8a8adb76e5dd9e509490ac567e05bd243e8ea20
+        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.3.1.tar.xz
+        sha512: c1c659cbadbdcb4cedefb0db7c5548af55cd07c30bc4acafb96e69faa6b730a2c5ba06abceedc409fddd9768249600ebc7643b9cfe2175e6d4d2d7926a55dbb6
