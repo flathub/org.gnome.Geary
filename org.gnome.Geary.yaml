@@ -14,7 +14,7 @@
 app-id: org.gnome.Geary
 branch: stable
 runtime: org.gnome.Platform
-runtime-version: "3.36"
+runtime-version: "3.38"
 sdk: org.gnome.Sdk
 command: geary
 
@@ -92,8 +92,8 @@ modules:
       - "--disable-gtk-doc-html"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.8/gspell-1.8.3.tar.xz
-        sha256: 5ae514dd0216be069176accf6d0049d6a01cfa6a50df4bc06be85f7080b62de8
+        url: https://download.gnome.org/sources/gspell/1.8/gspell-1.8.4.tar.xz
+        sha256: cf4d16a716e813449bd631405dc1001ea89537b8cdae2b8abfb3999212bd43b4
     cleanup:
       - /bin
       - /share
@@ -102,13 +102,13 @@ modules:
   - name: libical
     buildsystem: cmake-ninja
     config-opts:
+      - "-DBUILD_SHARED_LIBS:BOOL=ON"
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DCMAKE_INSTALL_LIBDIR=lib"
-      - "-DBUILD_SHARED_LIBS:BOOL=ON"
-      - "-DICAL_GLIB=true"
       - "-DGOBJECT_INTROSPECTION=true"
-      - "-DICAL_GLIB_VAPI=true"
       - "-DICAL_BUILD_DOCS=false"
+      - "-DICAL_GLIB=true"
+      - "-DICAL_GLIB_VAPI=true"
     sources:
       - type: archive
         url: https://github.com/libical/libical/releases/download/v3.0.8/libical-3.0.8.tar.gz
@@ -124,6 +124,7 @@ modules:
     buildsystem: cmake-ninja
     config-opts:
       - "-DCMAKE_BUILD_TYPE=Release"
+      - "-DENABLE_CANBERRA=OFF"
       - "-DENABLE_GTK=ON"
       - "-DENABLE_GOA=ON"
       - "-DENABLE_GOOGLE=OFF"
@@ -137,8 +138,8 @@ modules:
       - "-DENABLE_EXAMPLES=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.36/evolution-data-server-3.36.5.tar.xz
-        sha256: c555528c546d457be0dc0eaca5d766d4dfef7c408276cb05f9724c463bfe7fd9
+        url: https://download.gnome.org/sources/evolution-data-server/3.38/evolution-data-server-3.38.0.tar.xz
+        sha256: 13689a7b55765806c4d5f3b05ef6c24b0bf9957b9ed9240c2dd09a2cdb13b0af
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -172,18 +173,20 @@ modules:
     buildsystem: meson
     config-opts:
       - "-Dglade_catalog=disabled"
+      - "-Dexamples=false"
+      - "-Dtests=false"
     sources:
       - type: archive
-        url: https://source.puri.sm/Librem5/libhandy/-/archive/v0.0.13/libhandy-v0.0.13.tar.bz2
-        sha256: 507f92e173a6ab9c07f612d2758de434f1feeb72ca4a9dd7de16d9a2b533d60b
+        url: https://download.gnome.org/sources/libhandy/1.0/libhandy-1.0.0.tar.xz
+        sha256: a9398582f47b7d729205d6eac0c068fef35aaf249fdd57eea3724f8518d26699
 
   # Geary dependency
   - name: libpeas
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libpeas/1.26/libpeas-1.26.0.tar.xz
-        sha256: a976d77e20496479a8e955e6a38fb0e5c5de89cf64d9f44e75c2213ee14f7376
+        url: https://download.gnome.org/sources/libpeas/1.28/libpeas-1.28.0.tar.xz
+        sha256: 42d91993b46ed50f16add6d9577ecc22beb8e2dffa7101e2232c2b63733b8b15
 
   # Geary dependency
   - name: "libytnef"
@@ -196,5 +199,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.36/geary-3.36.3.1.tar.xz
-        sha512: c1c659cbadbdcb4cedefb0db7c5548af55cd07c30bc4acafb96e69faa6b730a2c5ba06abceedc409fddd9768249600ebc7643b9cfe2175e6d4d2d7926a55dbb6
+        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.0.tar.xz
+        sha256: c62bbcf3819942e2a3d3e4a3a19b1e92484f8b3b298da0dc0a549586b617ac00
