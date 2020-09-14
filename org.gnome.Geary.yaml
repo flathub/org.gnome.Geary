@@ -199,5 +199,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.0.tar.xz
-        sha256: c62bbcf3819942e2a3d3e4a3a19b1e92484f8b3b298da0dc0a549586b617ac00
+        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.0.1.tar.xz
+        sha256: e9c0293d4cf17d058c471124c0c2978f0f1d8bc0043f872390385d6dacfc7075
