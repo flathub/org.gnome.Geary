@@ -138,8 +138,8 @@ modules:
       - "-DENABLE_EXAMPLES=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.38/evolution-data-server-3.38.0.tar.xz
-        sha256: 13689a7b55765806c4d5f3b05ef6c24b0bf9957b9ed9240c2dd09a2cdb13b0af
+        url: https://download.gnome.org/sources/evolution-data-server/3.38/evolution-data-server-3.38.1.tar.xz
+        sha256: 8ff278e9c334f185236182709ba46ab727db2830d0b4e09485c1e582e1f2e4b7
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -217,5 +217,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.0.1.tar.xz
-        sha256: e9c0293d4cf17d058c471124c0c2978f0f1d8bc0043f872390385d6dacfc7075
+        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.1.tar.xz
+        sha256: e72e212798536657d5100e1e1a4a67f3836d6f0235340aae53e576f2a774e812
