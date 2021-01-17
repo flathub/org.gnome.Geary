@@ -53,7 +53,10 @@ finish-args:
   # Migrate GSettings into the sandbox
   - "--metadata=X-DConf=migrate-path=/org/gnome/Geary/"
 
-  # Let view source keep on working as-sis for now. Bug 779311. */
+  # Workaround for printing to PDF until WebKitGTK supports printing
+  - "--filesystem=xdg-download:rw"
+
+  # Let view source keep on working as-sis for now. Bug 779311.
   - "--filesystem=/tmp"
 
 cleanup:
