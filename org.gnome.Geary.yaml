@@ -88,8 +88,8 @@ modules:
       - "--enable-debug=no"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.36/gnome-online-accounts-3.36.0.tar.xz
-        sha256: 1c8f62990833ca41188dbb80c5e99d99b57a62608ca675bbcd37bc2244742f2e
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.38/gnome-online-accounts-3.38.0.tar.xz
+        sha256: 3760ea78729b3038dda0c416b57bc2cbaafcc619eec6c5109654d747fad2418c
 
   # Geary dependency
   - name: gspell
@@ -117,8 +117,8 @@ modules:
       - "-DICAL_GLIB_VAPI=true"
     sources:
       - type: archive
-        url: https://github.com/libical/libical/releases/download/v3.0.8/libical-3.0.8.tar.gz
-        sha512: ce015e6d4c1c7cb4af7b45748ce8251c663f80f6a4357ddff6a97796642619abe882f4cadeca10cabeb1b25577869f436da15bca882e032eb3ff0475f6010d8b
+        url: https://github.com/libical/libical/releases/download/v3.0.9/libical-3.0.9.tar.gz
+        sha512: 4a9894d82776437cb2ef16df70bffb52da7b4fd57b52a4f6941430b3b1f9830829f0775fb495411f67393581bda1304b54c9f0031bc3d4ada56d2204900cb268
     cleanup:
       - /lib/cmake
 
@@ -144,8 +144,8 @@ modules:
       - "-DENABLE_EXAMPLES=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.38/evolution-data-server-3.38.1.tar.xz
-        sha256: 8ff278e9c334f185236182709ba46ab727db2830d0b4e09485c1e582e1f2e4b7
+        url: https://download.gnome.org/sources/evolution-data-server/3.38/evolution-data-server-3.38.3.tar.xz
+        sha256: 9732f690b252aa7c0932c761740b5098a19705d1b6e4a5de2fad3a16e57e3ca7
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -201,8 +201,8 @@ modules:
       - "-Dtests=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libhandy/1.0/libhandy-1.0.0.tar.xz
-        sha256: a9398582f47b7d729205d6eac0c068fef35aaf249fdd57eea3724f8518d26699
+        url: https://download.gnome.org/sources/libhandy/1.0/libhandy-1.0.3.tar.xz
+        sha256: 559bb3acc2c362488917eb72ed25bdc181f4ae26ac94d177634cc5d34c867f7a
 
   # Geary dependency
   - name: libpeas
@@ -230,5 +230,5 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.1.tar.xz
-        sha256: e72e212798536657d5100e1e1a4a67f3836d6f0235340aae53e576f2a774e812
+        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.2.tar.xz
+        sha256: bed544fe6d764576d6786715c111956969fd4409878fc303339504ec4c7bd396
