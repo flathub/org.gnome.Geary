@@ -14,7 +14,7 @@
 app-id: org.gnome.Geary
 branch: stable
 runtime: org.gnome.Platform
-runtime-version: "3.38"
+runtime-version: "40"
 sdk: org.gnome.Sdk
 command: geary
 
@@ -52,6 +52,10 @@ finish-args:
   # Migrate GSettings into the sandbox
   - "--metadata=X-DConf=migrate-path=/org/gnome/Geary/"
 
+  # Migrate Geary settings from other release versions
+  - "--filesystem=~/.config/geary:ro"
+  - "--filesystem=~/.var/app/org.gnome.Geary/config/geary:ro"
+
   # Workaround for printing to PDF until WebKitGTK supports printing
   - "--filesystem=xdg-download:rw"
 
@@ -87,8 +91,8 @@ modules:
       - "--enable-debug=no"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.38/gnome-online-accounts-3.38.0.tar.xz
-        sha256: 3760ea78729b3038dda0c416b57bc2cbaafcc619eec6c5109654d747fad2418c
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.40/gnome-online-accounts-3.40.0.tar.xz
+        sha256: 585c4f979f6f543b77bfdb4fb01eb18ba25c2aec5b7866c676d929616fb2c3fa
 
   # Geary dependency
   - name: gspell
@@ -97,11 +101,23 @@ modules:
       - "--disable-gtk-doc-html"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.8/gspell-1.8.4.tar.xz
-        sha256: cf4d16a716e813449bd631405dc1001ea89537b8cdae2b8abfb3999212bd43b4
+        url: https://download.gnome.org/sources/gspell/1.9/gspell-1.9.1.tar.xz
+        sha256: dcbb769dfdde8e3c0a8ed3102ce7e661abbf7ddf85df08b29915e92cd723abdd
     cleanup:
       - /bin
       - /share
+
+  # Geary dependency
+  - name: libhandy
+    buildsystem: meson
+    config-opts:
+      - "-Dglade_catalog=disabled"
+    sources:
+      - type: archive
+        url: "https://download.gnome.org/sources/libhandy/1.2/libhandy-1.2.1.tar.xz"
+        sha256: 411b4c6a4d5f9ed5e46594b4abb04c54af294e3242cf364942029f5e0b6f510b
+    cleanup:
+      - /bin
 
   # EDS dependency
   - name: libical
@@ -116,8 +132,8 @@ modules:
       - "-DICAL_GLIB_VAPI=true"
     sources:
       - type: archive
-        url: https://github.com/libical/libical/releases/download/v3.0.9/libical-3.0.9.tar.gz
-        sha512: 4a9894d82776437cb2ef16df70bffb52da7b4fd57b52a4f6941430b3b1f9830829f0775fb495411f67393581bda1304b54c9f0031bc3d4ada56d2204900cb268
+        url: https://github.com/libical/libical/releases/download/v3.0.10/libical-3.0.10.tar.gz
+        sha512: e32ccaff9b8a501f340567a1221c580023e4ed79918519bfa88aee2c0e8b62f5ea37e10907f2eb6fbd346a57408708a74e30aaf9a57a8d711eae30ddc974ddd0
     cleanup:
       - /lib/cmake
 
@@ -130,21 +146,21 @@ modules:
     config-opts:
       - "-DCMAKE_BUILD_TYPE=Release"
       - "-DENABLE_CANBERRA=OFF"
-      - "-DENABLE_GTK=ON"
+      - "-DENABLE_EXAMPLES=OFF"
       - "-DENABLE_GOA=ON"
       - "-DENABLE_GOOGLE=OFF"
+      - "-DENABLE_GTK=ON"
+      - "-DENABLE_GTK_DOC=OFF"
+      - "-DENABLE_INSTALLED_TESTS=OFF"
+      - "-DENABLE_INTROSPECTION=ON"
       - "-DENABLE_VALA_BINDINGS=ON"
       - "-DENABLE_WEATHER=OFF"
-      - "-DWITH_OPENLDAP=OFF"
       - "-DWITH_LIBDB=OFF"
-      - "-DENABLE_INTROSPECTION=ON"
-      - "-DENABLE_INSTALLED_TESTS=OFF"
-      - "-DENABLE_GTK_DOC=OFF"
-      - "-DENABLE_EXAMPLES=OFF"
+      - "-DWITH_OPENLDAP=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.38/evolution-data-server-3.38.3.tar.xz
-        sha256: 9732f690b252aa7c0932c761740b5098a19705d1b6e4a5de2fad3a16e57e3ca7
+        url: https://download.gnome.org/sources/evolution-data-server/3.40/evolution-data-server-3.40.0.tar.xz
+        sha256: ed572f0cb6a2365809943449a8ccbee652681e2d9a1a7f4a54b60cbb53d87445
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -161,8 +177,8 @@ modules:
       - "-Dimport_tool=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.14/folks-0.14.0.tar.xz
-        sha256: d6e778da637d3b33fd9a6b45115e8157d8868211dc08b943d1075b5eb7282bb9
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.2.tar.xz
+        sha256: ef777b2696d15ec31ba8b940ecabc17fe7fab909584f9425258f54d295ccd122
     cleanup:
       - /bin
 
@@ -200,24 +216,12 @@ modules:
         sha256: 442db212b9ad71a13397b54cea742ab27cfcf95f43b3eb3d7ac4cec7cb4e59e5
 
   # Geary dependency
-  - name: libhandy
-    buildsystem: meson
-    config-opts:
-      - "-Dglade_catalog=disabled"
-      - "-Dexamples=false"
-      - "-Dtests=false"
-    sources:
-      - type: archive
-        url: https://download.gnome.org/sources/libhandy/1.0/libhandy-1.0.3.tar.xz
-        sha256: 559bb3acc2c362488917eb72ed25bdc181f4ae26ac94d177634cc5d34c867f7a
-
-  # Geary dependency
   - name: libpeas
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libpeas/1.28/libpeas-1.28.0.tar.xz
-        sha256: 42d91993b46ed50f16add6d9577ecc22beb8e2dffa7101e2232c2b63733b8b15
+        url: https://download.gnome.org/sources/libpeas/1.30/libpeas-1.30.0.tar.xz
+        sha256: 0bf5562e9bfc0382a9dcb81f64340787542568762a3a367d9d90f6185898b9a3
 
   # Geary dependency
   - name: "libytnef"
@@ -225,6 +229,23 @@ modules:
       - type: archive
         url: https://github.com/Yeraze/ytnef/archive/v1.9.3.tar.gz
         sha256: 41a0033bde33c86a7e4aa4e14bb822dd03084098638e7d6557263e47e80b4f4f
+
+  # Geary dependency
+  - name: snowball
+    buildsystem: simple
+    sources:
+      - type: archive
+        url: https://github.com/snowballstem/snowball/archive/refs/tags/v2.1.0.tar.gz
+        sha512: 1efd7d8ab58852987e83247048244882c517e32237c8cb3c0558b66ecfb075733ce8805ebb76041e6e7d6664c236054effe66838e7c524ee529ce869aa8134f0
+      - type: patch
+        paths:
+          - patches/snowball-shared-library.diff
+    build-commands:
+      - "make libstemmer.so -j$FLATPAK_BUILDER_N_JOBS"
+      - "install -Dm644 include/libstemmer.h /app/include/libstemmer.h"
+      - "install -Dm644 libstemmer.so.0.0.0 /app/lib/libstemmer.so.0.0.0"
+      - "ln -s libstemmer.so.0.0.0 /app/lib/libstemmer.so.0"
+      - "ln -s libstemmer.so.0 /app/lib/libstemmer.so"
 
   # Geary dependency
   - name: sound-theme-freedesktop
@@ -235,7 +256,12 @@ modules:
 
   - name: geary
     buildsystem: meson
+    config-opts:
+      - "-Dprofile=release"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/geary/3.38/geary-3.38.2.tar.xz
-        sha256: bed544fe6d764576d6786715c111956969fd4409878fc303339504ec4c7bd396
+        url: https://download.gnome.org/sources/geary/40/geary-40.0.tar.xz
+        sha256: 3356203725a924d6cb358e0c29ad090f4177d8d7b7f8210412cf0250ca6856b0
+      - type: patch
+        paths:
+          - patches/0001-desktop-Update-screenshots-for-40.0.patch
