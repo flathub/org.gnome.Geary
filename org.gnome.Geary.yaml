@@ -14,7 +14,7 @@
 app-id: org.gnome.Geary
 branch: stable
 runtime: org.gnome.Platform
-runtime-version: "40"
+runtime-version: "41"
 sdk: org.gnome.Sdk
 command: geary
 
@@ -106,18 +106,6 @@ modules:
       - /bin
       - /share
 
-  # Geary dependency
-  - name: libhandy
-    buildsystem: meson
-    config-opts:
-      - "-Dglade_catalog=disabled"
-    sources:
-      - type: archive
-        url: "https://download.gnome.org/sources/libhandy/1.2/libhandy-1.2.1.tar.xz"
-        sha256: 411b4c6a4d5f9ed5e46594b4abb04c54af294e3242cf364942029f5e0b6f510b
-    cleanup:
-      - /bin
-
   # EDS dependency
   - name: libical
     buildsystem: cmake-ninja
@@ -131,8 +119,8 @@ modules:
       - "-DICAL_GLIB_VAPI=true"
     sources:
       - type: archive
-        url: https://github.com/libical/libical/releases/download/v3.0.10/libical-3.0.10.tar.gz
-        sha512: e32ccaff9b8a501f340567a1221c580023e4ed79918519bfa88aee2c0e8b62f5ea37e10907f2eb6fbd346a57408708a74e30aaf9a57a8d711eae30ddc974ddd0
+        url: https://github.com/libical/libical/releases/download/v3.0.11/libical-3.0.11.tar.gz
+        sha256: 1e6c5e10c5a48f7a40c68958055f0e2759d9ab3563aca17273fe35a5df7dbbf1
     cleanup:
       - /lib/cmake
 
@@ -158,8 +146,8 @@ modules:
       - "-DWITH_OPENLDAP=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.40/evolution-data-server-3.40.0.tar.xz
-        sha256: ed572f0cb6a2365809943449a8ccbee652681e2d9a1a7f4a54b60cbb53d87445
+        url: https://download.gnome.org/sources/evolution-data-server/3.40/evolution-data-server-3.40.4.tar.xz
+        sha256: 87c185f18c37270e3611981f19bd9221ac974c807462c8dce90bea08712c5800
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -176,21 +164,13 @@ modules:
       - "-Dimport_tool=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.2.tar.xz
-        sha256: ef777b2696d15ec31ba8b940ecabc17fe7fab909584f9425258f54d295ccd122
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.3.tar.xz
+        sha256: 21d737faf093f4be065473ee70ca20885b9a2c3685941dba24c2239fd3c544a5
     cleanup:
       - /bin
 
   # GSound dependency
-  - name: libcanberra
-    sources:
-      - type: archive
-        url: http://0pointer.de/lennart/projects/libcanberra/libcanberra-0.30.tar.xz
-        sha256: c2b671e67e0c288a69fc33dc1b6f1b534d07882c2aceed37004bf48c601afa72
-    config-opts:
-      - "--disable-alsa"
-      - "--disable-null"
-      - "--disable-oss"
+  - shared-modules/libcanberra/libcanberra.json
 
   # Geary dependency, workaround libsecret access via secret portal
   # being non-functional GNOME/libsecret#58
@@ -202,10 +182,11 @@ modules:
 
   # Geary dependency
   - name: gsound
+    buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gsound/1.0/gsound-1.0.2.tar.xz
-        sha256: bba8ff30eea815037e53bee727bbd5f0b6a2e74d452a7711b819a7c444e78e53
+        url: https://download.gnome.org/sources/gsound/1.0/gsound-1.0.3.tar.xz
+        sha256: ca2d039e1ebd148647017a7f548862350bc9af01986d39f10cfdc8e95f07881a
 
   # Geary dependency
   - name: gmime
@@ -226,8 +207,8 @@ modules:
   - name: "libytnef"
     sources:
       - type: archive
-        url: https://github.com/Yeraze/ytnef/archive/v1.9.3.tar.gz
-        sha256: 41a0033bde33c86a7e4aa4e14bb822dd03084098638e7d6557263e47e80b4f4f
+        url: https://github.com/Yeraze/ytnef/archive/v2.0.tar.gz
+        sha256: bb12f34572de89e4825fce98d2d235d93cd34b2c41fed0074ebfa89af9e724a9
 
   # Geary dependency
   - name: snowball
