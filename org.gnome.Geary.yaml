@@ -164,8 +164,8 @@ modules:
       - "-Dimport_tool=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.3.tar.xz
-        sha256: 21d737faf093f4be065473ee70ca20885b9a2c3685941dba24c2239fd3c544a5
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.5.tar.xz
+        sha256: 0fff8a896330cd82aee4598324f7e541c884d0337536212723b4beb38c759086
     cleanup:
       - /bin
 
