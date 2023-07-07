@@ -14,7 +14,7 @@
 app-id: org.gnome.Geary
 branch: stable
 runtime: org.gnome.Platform
-runtime-version: "43"
+runtime-version: "44"
 sdk: org.gnome.Sdk
 command: geary
 
@@ -96,8 +96,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.46/gnome-online-accounts-3.46.0.tar.xz
-        sha256: 5e7859ce4858a6b99d3995ed70527d66e297bb90bbf75ec8780fe9da22c1fcaa
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.48/gnome-online-accounts-3.48.0.tar.xz
+        sha256: 418bb9fcffdbd72a98205ad365137617fc1e3551a54de74f6a98d45d266175bf
 
   # Geary dependency
   - name: gspell
@@ -106,8 +106,8 @@ modules:
       - "--disable-gtk-doc-html"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.12/gspell-1.12.0.tar.xz
-        sha256: 40d2850f1bb6e8775246fa1e39438b36caafbdbada1d28a19fa1ca07e1ff82ad
+        url: https://download.gnome.org/sources/gspell/1.12/gspell-1.12.1.tar.xz
+        sha256: 8ec44f32052e896fcdd4926eb814a326e39a5047e251eec7b9056fbd9444b0f1
     cleanup:
       - /bin
       - /share
@@ -152,8 +152,8 @@ modules:
       - "-DWITH_OPENLDAP=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.46/evolution-data-server-3.46.0.tar.xz
-        sha256: e5fa28095a183f7ab5a928e35a828379b481ddef83ed4c7b51a2e3c4aef5cdab
+        url: https://download.gnome.org/sources/evolution-data-server/3.48/evolution-data-server-3.48.4.tar.xz
+        sha256: 997e3f93b17efb0affcc017bee8780ba5fa2c009e36551bbc91a08ae552d6d60
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -170,8 +170,8 @@ modules:
       - "-Dimport_tool=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.5.tar.xz
-        sha256: 0fff8a896330cd82aee4598324f7e541c884d0337536212723b4beb38c759086
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.6.tar.xz
+        sha256: c866630c553f29ce9be1c7a60267cb4080a6bccf4b8d551dc4c7e6234d840248
     cleanup:
       - /bin
 
@@ -181,10 +181,13 @@ modules:
   # Geary dependency, workaround libsecret access via secret portal
   # being non-functional GNOME/libsecret#58
   - name: libsecret
+    buildsystem: meson
+    config-opts:
+      - "-Dgtk_doc=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libsecret/0.19/libsecret-0.19.1.tar.xz
-        sha256: 8583e10179456ae2c83075d95455f156dc08db6278b32bf4bd61819335a30e3a
+        url: https://download.gnome.org/sources/libsecret/0.20/libsecret-0.20.5.tar.xz
+        sha256: 3fb3ce340fcd7db54d87c893e69bfc2b1f6e4d4b279065ffe66dac9f0fd12b4d
 
   # Geary dependency
   - name: gsound
@@ -198,23 +201,23 @@ modules:
   - name: gmime
     sources:
       - type: archive
-        url: https://github.com/jstedfast/gmime/archive/3.2.7.tar.gz
-        sha256: 442db212b9ad71a13397b54cea742ab27cfcf95f43b3eb3d7ac4cec7cb4e59e5
+        url: https://github.com/jstedfast/gmime/releases/download/3.2.13/gmime-3.2.13.tar.xz
+        sha256: 2e10a54d4821daf8b16c019ad5d567e0fb8e766f8ffe5fec3d4c6a37373d6406
 
   # Geary dependency
   - name: libpeas
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/libpeas/1.34/libpeas-1.34.0.tar.xz
-        sha256: 4305f715dab4b5ad3e8007daec316625e7065a94e63e25ef55eb1efb964a7bf0
+        url: https://download.gnome.org/sources/libpeas/1.36/libpeas-1.36.0.tar.xz
+        sha256: 297cb9c2cccd8e8617623d1a3e8415b4530b8e5a893e3527bbfd1edd13237b4c
 
   # Geary dependency
   - name: "libytnef"
     sources:
       - type: archive
-        url: https://github.com/Yeraze/ytnef/archive/v2.0.tar.gz
-        sha256: bb12f34572de89e4825fce98d2d235d93cd34b2c41fed0074ebfa89af9e724a9
+        url: https://github.com/Yeraze/ytnef/archive/v2.1.2.tar.gz
+        sha256: 340f03f495884611209e9c0bc943fad06ce920e8c79655aa228d5ca7418dc360
 
   # Geary dependency
   - name: snowball
@@ -248,6 +251,5 @@ modules:
     sources:
       - type: git
         url: https://gitlab.gnome.org/GNOME/geary.git
-        branch: gnome-43
-        commit: d86265f940f2ea6d481af29e38a60038779e5da2
-
+        branch: gnome-44
+        commit: b72db2a5e87f2269e6359af434a4fc02fca9e9df
