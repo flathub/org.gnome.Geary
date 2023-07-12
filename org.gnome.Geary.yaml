@@ -205,6 +205,8 @@ modules:
       - type: archive
         url: https://github.com/jstedfast/gmime/releases/download/3.2.13/gmime-3.2.13.tar.xz
         sha256: 2e10a54d4821daf8b16c019ad5d567e0fb8e766f8ffe5fec3d4c6a37373d6406
+      - type: patch
+        path: patches/gmime-fix-url-parser.diff
 
   # Geary dependency
   - name: libpeas
@@ -251,7 +253,6 @@ modules:
     config-opts:
       - "-Dprofile=release"
     sources:
-      - type: git
-        url: https://gitlab.gnome.org/GNOME/geary.git
-        branch: gnome-44
-        commit: b72db2a5e87f2269e6359af434a4fc02fca9e9df
+      - type: archive
+        url: https://download.gnome.org/sources/geary/44/geary-44.0.tar.xz
+        sha256: 8014ac5a8ad3c5444ca56977d9ad1006bd6f4ef5c92e43735c5130de8edc909d
