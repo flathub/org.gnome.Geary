@@ -35,6 +35,9 @@ finish-args:
   # Needs to talk to the network
   - "--share=network"
 
+  # Logind support
+  - "--system-talk-name=org.freedesktop.login1"
+
   # Secrets access
   - "--talk-name=org.freedesktop.secrets"
 
