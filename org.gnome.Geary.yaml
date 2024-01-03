@@ -47,7 +47,7 @@ finish-args:
 
   # Folks contact and avatar support (via EDS)
   - "--talk-name=org.gnome.evolution.dataserver.*"
-  - "--filesystem=xdg-cache/evolution/addressbook:ro"
+  - "--filesystem=~/.cache/evolution/addressbook:ro"
 
   # Migrate GSettings into the sandbox
   - "--metadata=X-DConf=migrate-path=/org/gnome/Geary/"
