@@ -14,7 +14,7 @@
 app-id: org.gnome.Geary
 branch: stable
 runtime: org.gnome.Platform
-runtime-version: "46"
+runtime-version: "47"
 sdk: org.gnome.Sdk
 command: geary
 
@@ -99,8 +99,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.48/gnome-online-accounts-3.48.0.tar.xz
-        sha256: 418bb9fcffdbd72a98205ad365137617fc1e3551a54de74f6a98d45d266175bf
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.48/gnome-online-accounts-3.48.3.tar.xz
+        sha256: 37e4372c345c770f7172da3c605183a43081ea0e915ecc448fb2d65a38e9d565
 
   # Geary dependency
   - name: gspell
@@ -109,8 +109,8 @@ modules:
       - "--disable-gtk-doc-html"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.12/gspell-1.12.1.tar.xz
-        sha256: 8ec44f32052e896fcdd4926eb814a326e39a5047e251eec7b9056fbd9444b0f1
+        url: https://download.gnome.org/sources/gspell/1.12/gspell-1.12.2.tar.xz
+        sha256: b4e993bd827e4ceb6a770b1b5e8950fce3be9c8b2b0cbeb22fdf992808dd2139
     cleanup:
       - /bin
       - /share
@@ -128,8 +128,8 @@ modules:
       - "-DICAL_GLIB_VAPI=true"
     sources:
       - type: archive
-        url: https://github.com/libical/libical/releases/download/v3.0.16/libical-3.0.16.tar.gz
-        sha256: b44705dd71ca4538c86fb16248483ab4b48978524fb1da5097bd76aa2e0f0c33
+        url: https://github.com/libical/libical/releases/download/v3.0.19/libical-3.0.19.tar.gz
+        sha256: 6a1e7f0f50a399cbad826bcc286ce10d7151f3df7cc103f641de15160523c73f
     cleanup:
       - /lib/cmake
 
@@ -173,8 +173,8 @@ modules:
       - "-Dimport_tool=false"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.6.tar.xz
-        sha256: c866630c553f29ce9be1c7a60267cb4080a6bccf4b8d551dc4c7e6234d840248
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.9.tar.xz
+        sha256: 2311b37355c351f33f163fdc394874a22a0a0682c319493d6d8a6e420711415f
     cleanup:
       - /bin
 
@@ -206,8 +206,8 @@ modules:
   - name: gmime
     sources:
       - type: archive
-        url: https://github.com/jstedfast/gmime/releases/download/3.2.14/gmime-3.2.14.tar.xz
-        sha256: a5eb3dd675f72e545c8bc1cd12107e4aad2eaec1905eb7b4013cdb1fbe5e2317
+        url: https://github.com/jstedfast/gmime/releases/download/3.2.15/gmime-3.2.15.tar.xz
+        sha256: 84cd2a481a27970ec39b5c95f72db026722904a2ccf3fdbd57b280cf2d02b5c4
 
   # Geary dependency
   - name: libpeas
@@ -257,3 +257,6 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/geary/46/geary-46.0.tar.xz
         sha256: afad151302817ddf098b5e416e7ac7f2d5eea567a3b80bb90bd3c62afd13b9a1
+      - type: patch
+        paths:
+          - patches/geary-remove-appstream-glib.patch
