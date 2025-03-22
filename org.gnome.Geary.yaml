@@ -260,3 +260,4 @@ modules:
       - type: patch
         paths:
           - patches/geary-remove-appstream-glib.patch
+          - patches/metadatafix.patch
