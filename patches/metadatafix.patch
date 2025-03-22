@@ -1,0 +1,61 @@
+From 4c16f7be190bf7e751eac33e41a9504508aceb98 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?Ball=C3=B3=20Gy=C3=B6rgy?= <ballogyor@gmail.com>
+Date: Mon, 10 Feb 2025 23:20:40 +0100
+Subject: [PATCH] Move screenshots from wiki.gnome.org
+
+Closes: https://gitlab.gnome.org/GNOME/geary/-/issues/1602
+---
+ README.md                                 | 4 ++--
+ desktop/org.gnome.Geary.appdata.xml.in.in | 6 +++---
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+
+diff --git a/README.md b/README.md
+index 72e7659d1..823f83d97 100644
+--- a/README.md
++++ b/README.md
+@@ -2,7 +2,7 @@
+ Geary: Send and receive email
+ =============================
+ 
+-![Geary icon](https://wiki.gnome.org/Apps/Geary?action=AttachFile&do=get&target=geary-3-32-256-logo.png)
++![Geary icon](https://gitlab.gnome.org/GNOME/geary/raw/HEAD/icons/hicolor/scalable/apps/org.gnome.Geary.svg)
+ 
+ Geary is an email application built around conversations, for the
+ GNOME desktop. It allows you to read, find and send email with a
+@@ -15,7 +15,7 @@ translations are managed using GNOME's infrastructure, so we cannot
+ accept tickets or pull requests on GitHub. Please see the links below
+ for more information.
+ 
+-![Geary displaying a conversation](https://wiki.gnome.org/Apps/Geary?action=AttachFile&amp;do=get&amp;target=geary-3-32-main-window.png)
++![Geary displaying a conversation](https://static.gnome.org/appdata/geary/geary-40-main-window.png)
+ 
+ Building & Licensing
+ --------------------
+diff --git a/desktop/org.gnome.Geary.appdata.xml.in.in b/desktop/org.gnome.Geary.appdata.xml.in.in
+index 045b5cece..6f433c728 100644
+--- a/desktop/org.gnome.Geary.appdata.xml.in.in
++++ b/desktop/org.gnome.Geary.appdata.xml.in.in
+@@ -44,17 +44,17 @@
+ 
+   <screenshots>
+     <screenshot type="default">
+-      <image>https://wiki.gnome.org/Apps/Geary?action=AttachFile&amp;do=get&amp;target=geary-40-main-window.png</image>
++      <image>https://static.gnome.org/appdata/geary/geary-40-main-window.png</image>
+     </screenshot>
+     <screenshot>
+       <!-- Translators: A screenshot description. -->
+       <caption>Geary displaying a conversation</caption>
+-      <image>https://wiki.gnome.org/Apps/Geary?action=AttachFile&amp;do=get&amp;target=geary-40-conversation.png</image>
++      <image>https://static.gnome.org/appdata/geary/geary-40-conversation.png</image>
+     </screenshot>
+     <screenshot>
+       <!-- Translators: A screenshot description. -->
+       <caption>Geary showing the rich text composer</caption>
+-      <image>https://wiki.gnome.org/Apps/Geary?action=AttachFile&amp;do=get&amp;target=geary-3-36-composer.png</image>
++      <image>https://static.gnome.org/appdata/geary/geary-3-36-composer.png</image>
+     </screenshot>
+   </screenshots>
+ 
+-- 
+GitLab
+
