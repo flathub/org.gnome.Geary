@@ -90,6 +90,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/rest/0.9/rest-0.9.1.tar.xz
         sha256: 9266a5c10ece383e193dfb7ffb07b509cc1f51521ab8dad76af96ed14212c2e3
+        x-checker-data:
+          type: gnome
+          name: rest
 
   # Geary dependency
   - name: gnome-online-accounts
@@ -103,6 +106,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/gnome-online-accounts/3.54/gnome-online-accounts-3.54.3.tar.xz
         sha256: bcf655dd1ddc22bc25793b6840da19f5cad7ba0b7227ff969ed9c252f036aac5
+        x-checker-data:
+          type: gnome
+          name: gnome-online-accounts
 
   # Geary dependency
   - name: gspell
@@ -111,6 +117,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz
         sha256: 64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897
+        x-checker-data:
+          type: gnome
+          name: gspell
     cleanup:
       - /bin
       - /share
@@ -130,6 +139,10 @@ modules:
       - type: archive
         url: https://github.com/libical/libical/releases/download/v3.0.20/libical-3.0.20.tar.gz
         sha256: e73de92f5a6ce84c1b00306446b290a2b08cdf0a80988eca0a2c9d5c3510b4c2
+        x-checker-data:
+          type: anitya
+          project-id: 1637
+          url-template: https://github.com/libical/libical/releases/download/v$version/libical-$version.tar.gz
     cleanup:
       - /lib/cmake
 
@@ -157,6 +170,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/evolution-data-server/3.56/evolution-data-server-3.56.2.tar.xz
         sha256: df4ec29950f29a76eac6fbe0f814c48d2cef7d3fdb905002a4a883dd761ce93c
+        x-checker-data:
+          type: gnome
+          name: evolution-data-server
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -175,6 +191,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/folks/0.15/folks-0.15.9.tar.xz
         sha256: 2311b37355c351f33f163fdc394874a22a0a0682c319493d6d8a6e420711415f
+        x-checker-data:
+          type: gnome
+          name: folks
     cleanup:
       - /bin
 
@@ -201,6 +220,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/gsound/1.0/gsound-1.0.3.tar.xz
         sha256: ca2d039e1ebd148647017a7f548862350bc9af01986d39f10cfdc8e95f07881a
+        x-checker-data:
+          type: gnome
+          name: gsound
 
   # Geary dependency
   - name: gmime
@@ -208,6 +230,10 @@ modules:
       - type: archive
         url: https://github.com/jstedfast/gmime/releases/download/3.2.15/gmime-3.2.15.tar.xz
         sha256: 84cd2a481a27970ec39b5c95f72db026722904a2ccf3fdbd57b280cf2d02b5c4
+        x-checker-data:
+          type: anitya
+          project-id: 13124
+          url-template: https://github.com/jstedfast/gmime/releases/download/$version/gmime-$version.tar.xz
 
   # Geary dependency
   - name: libpeas
@@ -216,6 +242,11 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/libpeas/1.36/libpeas-1.36.0.tar.xz
         sha256: 297cb9c2cccd8e8617623d1a3e8415b4530b8e5a893e3527bbfd1edd13237b4c
+        x-checker-data:
+          type: gnome
+          name: libpeas
+          versions:
+            <: '1.37'
 
   # Geary dependency
   - name: libytnef
@@ -223,6 +254,10 @@ modules:
       - type: archive
         url: https://github.com/Yeraze/ytnef/archive/v2.1.2.tar.gz
         sha256: 340f03f495884611209e9c0bc943fad06ce920e8c79655aa228d5ca7418dc360
+        x-checker-data:
+          type: anitya
+          project-id: 13975
+          url-template: https://github.com/Yeraze/ytnef/archive/v$version.tar.gz
 
   # Geary dependency
   - name: snowball
@@ -231,6 +266,10 @@ modules:
       - type: archive
         url: https://github.com/snowballstem/snowball/archive/refs/tags/v3.0.1.tar.gz
         sha256: 80ac10ce40dc4fcfbfed8d085c457b5613da0e86a73611a3d5527d044a142d60
+        x-checker-data:
+          type: anitya
+          project-id: 230535
+          url-template: https://github.com/snowballstem/snowball/archive/refs/tags/v$version.tar.gz
       - type: patch
         paths:
           - patches/0001-Make-libstemmer-a-shared-library.patch
@@ -248,6 +287,10 @@ modules:
       - type: archive
         url: http://people.freedesktop.org/~mccann/dist/sound-theme-freedesktop-0.8.tar.bz2
         sha256: cb518b20eef05ec2e82dda1fa89a292c1760dc023aba91b8aa69bafac85e8a14
+        x-checker-data:
+          type: anitya
+          project-id: 10152
+          url-template: http://people.freedesktop.org/~mccann/dist/sound-theme-freedesktop-$version.tar.bz2
 
   - name: geary
     buildsystem: meson
@@ -257,6 +300,9 @@ modules:
       - type: archive
         url: https://download.gnome.org/sources/geary/46/geary-46.0.tar.xz
         sha256: afad151302817ddf098b5e416e7ac7f2d5eea567a3b80bb90bd3c62afd13b9a1
+        x-checker-data:
+          type: gnome
+          name: geary
       - type: patch
         paths:
           - patches/geary-remove-appstream-glib.patch
