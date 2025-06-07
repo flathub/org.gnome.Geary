@@ -20,49 +20,49 @@ command: geary
 
 finish-args:
   # X11 + XShm access
-  - "--share=ipc"
-  - "--socket=fallback-x11"
+  - --share=ipc
+  - --socket=fallback-x11
 
   # Wayland access
-  - "--socket=wayland"
+  - --socket=wayland
 
   # OpenGL access for WK2
-  - "--device=dri"
+  - --device=dri
 
   # Sent mail sound plugin
-  - "--socket=pulseaudio"
+  - --socket=pulseaudio
 
   # Needs to talk to the network
-  - "--share=network"
+  - --share=network
 
   # Logind support
-  - "--system-talk-name=org.freedesktop.login1"
+  - --system-talk-name=org.freedesktop.login1
 
   # Secrets access
-  - "--talk-name=org.freedesktop.secrets"
+  - --talk-name=org.freedesktop.secrets
 
   # Contacts open/edit support
-  - "--talk-name=org.gnome.Contacts"
+  - --talk-name=org.gnome.Contacts
 
   # GOA support
-  - "--talk-name=org.gnome.ControlCenter"
-  - "--talk-name=org.gnome.OnlineAccounts"
+  - --talk-name=org.gnome.ControlCenter
+  - --talk-name=org.gnome.OnlineAccounts
 
   # Folks contact and avatar support (via EDS)
-  - "--talk-name=org.gnome.evolution.dataserver.*"
-  - "--filesystem=~/.cache/evolution/addressbook:ro"
+  - --talk-name=org.gnome.evolution.dataserver.*
+  - --filesystem=~/.cache/evolution/addressbook:ro
 
   # Migrate GSettings into the sandbox
-  - "--metadata=X-DConf=migrate-path=/org/gnome/Geary/"
+  - --metadata=X-DConf=migrate-path=/org/gnome/Geary/
 
   # Migrate Geary settings from other release versions
-  - "--filesystem=~/.config/geary:ro"
+  - --filesystem=~/.config/geary:ro
 
   # Workaround for printing to PDF until WebKitGTK supports printing
-  - "--filesystem=xdg-download:rw"
+  - --filesystem=xdg-download:rw
 
   # Let view source keep on working as-sis for now. Bug 779311.
-  - "--filesystem=/tmp"
+  - --filesystem=/tmp
 
 cleanup:
   - /include
@@ -75,17 +75,17 @@ cleanup:
   - /share/man
   - /share/pkgconfig
   - /share/vala
-  - "*.la"
-  - "*.a"
+  - '*.la'
+  - '*.a'
 
 modules:
   # Gnome Online Accounts dependency
   - name: rest
     buildsystem: meson
     config-opts:
-      - "-Dexamples=false"
-      - "-Dgtk_doc=false"
-      - "-Dtests=false"
+      - -Dexamples=false
+      - -Dgtk_doc=false
+      - -Dtests=false
     sources:
       - type: archive
         url: https://download.gnome.org/sources/rest/0.9/rest-0.9.1.tar.xz
@@ -119,13 +119,13 @@ modules:
   - name: libical
     buildsystem: cmake-ninja
     config-opts:
-      - "-DBUILD_SHARED_LIBS:BOOL=ON"
-      - "-DCMAKE_BUILD_TYPE=Release"
-      - "-DCMAKE_INSTALL_LIBDIR=lib"
-      - "-DGOBJECT_INTROSPECTION=true"
-      - "-DICAL_BUILD_DOCS=false"
-      - "-DICAL_GLIB=true"
-      - "-DICAL_GLIB_VAPI=true"
+      - -DBUILD_SHARED_LIBS:BOOL=ON
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DCMAKE_INSTALL_LIBDIR=lib
+      - -DGOBJECT_INTROSPECTION=true
+      - -DICAL_BUILD_DOCS=false
+      - -DICAL_GLIB=true
+      - -DICAL_GLIB_VAPI=true
     sources:
       - type: archive
         url: https://github.com/libical/libical/releases/download/v3.0.20/libical-3.0.20.tar.gz
@@ -140,19 +140,19 @@ modules:
   - name: evolution-data-server
     buildsystem: cmake-ninja
     config-opts:
-      - "-DCMAKE_BUILD_TYPE=Release"
-      - "-DENABLE_CANBERRA=OFF"
-      - "-DENABLE_EXAMPLES=OFF"
-      - "-DENABLE_GOA=ON"
-      - "-DENABLE_GOOGLE=OFF"
-      - "-DENABLE_GTK=ON"
-      - "-DENABLE_GTK_DOC=OFF"
-      - "-DENABLE_INSTALLED_TESTS=OFF"
-      - "-DENABLE_INTROSPECTION=ON"
-      - "-DENABLE_VALA_BINDINGS=ON"
-      - "-DENABLE_WEATHER=OFF"
-      - "-DWITH_LIBDB=OFF"
-      - "-DWITH_OPENLDAP=OFF"
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DENABLE_CANBERRA=OFF
+      - -DENABLE_EXAMPLES=OFF
+      - -DENABLE_GOA=ON
+      - -DENABLE_GOOGLE=OFF
+      - -DENABLE_GTK=ON
+      - -DENABLE_GTK_DOC=OFF
+      - -DENABLE_INSTALLED_TESTS=OFF
+      - -DENABLE_INTROSPECTION=ON
+      - -DENABLE_VALA_BINDINGS=ON
+      - -DENABLE_WEATHER=OFF
+      - -DWITH_LIBDB=OFF
+      - -DWITH_OPENLDAP=OFF
     sources:
       - type: archive
         url: https://download.gnome.org/sources/evolution-data-server/3.56/evolution-data-server-3.56.2.tar.xz
@@ -167,10 +167,10 @@ modules:
   - name: folks
     buildsystem: meson
     config-opts:
-      - "-Dtelepathy_backend=false"
-      - "-Dbluez_backend=false"
-      - "-Dinspect_tool=false"
-      - "-Dimport_tool=false"
+      - -Dtelepathy_backend=false
+      - -Dbluez_backend=false
+      - -Dinspect_tool=false
+      - -Dimport_tool=false
     sources:
       - type: archive
         url: https://download.gnome.org/sources/folks/0.15/folks-0.15.9.tar.xz
@@ -218,7 +218,7 @@ modules:
         sha256: 297cb9c2cccd8e8617623d1a3e8415b4530b8e5a893e3527bbfd1edd13237b4c
 
   # Geary dependency
-  - name: "libytnef"
+  - name: libytnef
     sources:
       - type: archive
         url: https://github.com/Yeraze/ytnef/archive/v2.1.2.tar.gz
@@ -252,7 +252,7 @@ modules:
   - name: geary
     buildsystem: meson
     config-opts:
-      - "-Dprofile=release"
+      - -Dprofile=release
     sources:
       - type: archive
         url: https://download.gnome.org/sources/geary/46/geary-46.0.tar.xz
