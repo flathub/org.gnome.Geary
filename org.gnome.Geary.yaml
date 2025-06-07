@@ -94,23 +94,23 @@ modules:
   # Geary dependency
   - name: gnome-online-accounts
     buildsystem: meson
+    config-opts:
+      - -Dgoabackend=false
     cleanup:
       - /bin
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.48/gnome-online-accounts-3.48.3.tar.xz
-        sha256: 37e4372c345c770f7172da3c605183a43081ea0e915ecc448fb2d65a38e9d565
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.54/gnome-online-accounts-3.54.3.tar.xz
+        sha256: bcf655dd1ddc22bc25793b6840da19f5cad7ba0b7227ff969ed9c252f036aac5
 
   # Geary dependency
   - name: gspell
-    config-opts:
-      - "--disable-gtk-doc"
-      - "--disable-gtk-doc-html"
+    buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.12/gspell-1.12.2.tar.xz
-        sha256: b4e993bd827e4ceb6a770b1b5e8950fce3be9c8b2b0cbeb22fdf992808dd2139
+        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz
+        sha256: 64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897
     cleanup:
       - /bin
       - /share
@@ -128,8 +128,8 @@ modules:
       - "-DICAL_GLIB_VAPI=true"
     sources:
       - type: archive
-        url: https://github.com/libical/libical/releases/download/v3.0.19/libical-3.0.19.tar.gz
-        sha256: 6a1e7f0f50a399cbad826bcc286ce10d7151f3df7cc103f641de15160523c73f
+        url: https://github.com/libical/libical/releases/download/v3.0.20/libical-3.0.20.tar.gz
+        sha256: e73de92f5a6ce84c1b00306446b290a2b08cdf0a80988eca0a2c9d5c3510b4c2
     cleanup:
       - /lib/cmake
 
@@ -155,8 +155,8 @@ modules:
       - "-DWITH_OPENLDAP=OFF"
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.48/evolution-data-server-3.48.4.tar.xz
-        sha256: 997e3f93b17efb0affcc017bee8780ba5fa2c009e36551bbc91a08ae552d6d60
+        url: https://download.gnome.org/sources/evolution-data-server/3.56/evolution-data-server-3.56.2.tar.xz
+        sha256: df4ec29950f29a76eac6fbe0f814c48d2cef7d3fdb905002a4a883dd761ce93c
     cleanup:
       - /lib/cmake
       - /lib/evolution-data-server/*-backends
@@ -229,17 +229,17 @@ modules:
     buildsystem: simple
     sources:
       - type: archive
-        url: https://github.com/snowballstem/snowball/archive/refs/tags/v2.2.0.tar.gz
-        sha512: 02c43313de9de2518ea51cfb11f1c29145fc046c7838329bfdefd70b604009ad44b6db8175c25b0db31f03db30a6aec5857aa35775a9c204ec976df9cae62957
+        url: https://github.com/snowballstem/snowball/archive/refs/tags/v3.0.1.tar.gz
+        sha256: 80ac10ce40dc4fcfbfed8d085c457b5613da0e86a73611a3d5527d044a142d60
       - type: patch
         paths:
-          - patches/snowball-shared-library.diff
+          - patches/0001-Make-libstemmer-a-shared-library.patch
     build-commands:
-      - "make libstemmer.so -j$FLATPAK_BUILDER_N_JOBS"
-      - "install -Dm644 include/libstemmer.h /app/include/libstemmer.h"
-      - "install -Dm644 libstemmer.so /app/lib/libstemmer.so.0.0.0"
-      - "ln -s libstemmer.so.0.0.0 /app/lib/libstemmer.so.0"
-      - "ln -s libstemmer.so.0 /app/lib/libstemmer.so"
+      - make -j$FLATPAK_BUILDER_N_JOBS
+      - install -Dm644 include/libstemmer.h /app/include/libstemmer.h
+      - install -Dm644 libstemmer.so.0 /app/lib/libstemmer.so.0.0.0
+      - ln -s libstemmer.so.0.0.0 /app/lib/libstemmer.so.0
+      - ln -s libstemmer.so.0 /app/lib/libstemmer.so
 
 
   # Geary dependency
