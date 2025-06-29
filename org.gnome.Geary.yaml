@@ -104,8 +104,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.54/gnome-online-accounts-3.54.3.tar.xz
-        sha256: bcf655dd1ddc22bc25793b6840da19f5cad7ba0b7227ff969ed9c252f036aac5
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.55/gnome-online-accounts-3.55.0.tar.xz
+        sha256: fd69d0aec3b672621f525671b5e54f28b73939920b3fc308ade561a83a727b2d
         x-checker-data:
           type: gnome
           name: gnome-online-accounts
@@ -168,8 +168,8 @@ modules:
       - -DWITH_OPENLDAP=OFF
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.56/evolution-data-server-3.56.2.tar.xz
-        sha256: df4ec29950f29a76eac6fbe0f814c48d2cef7d3fdb905002a4a883dd761ce93c
+        url: https://download.gnome.org/sources/evolution-data-server/3.57/evolution-data-server-3.57.1.tar.xz
+        sha256: e23534f87599a16c17790aca05ea253781daca6fbe57ab318628e36aa064e8bd
         x-checker-data:
           type: gnome
           name: evolution-data-server
@@ -205,7 +205,7 @@ modules:
   - name: libsecret
     buildsystem: meson
     config-opts:
-      - "-Dgtk_doc=false"
+      - -Dgtk_doc=false
     sources:
       - type: archive
         url: https://download.gnome.org/sources/libsecret/0.20/libsecret-0.20.5.tar.xz
