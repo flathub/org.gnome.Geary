@@ -104,8 +104,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.54/gnome-online-accounts-3.54.3.tar.xz
-        sha256: bcf655dd1ddc22bc25793b6840da19f5cad7ba0b7227ff969ed9c252f036aac5
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.56/gnome-online-accounts-3.56.0.tar.xz
+        sha256: 31d6a017d171b27ff936478fdb0792a200c8142eafc18b255073ce9dfb417572
         x-checker-data:
           type: gnome
           name: gnome-online-accounts
