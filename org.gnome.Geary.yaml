@@ -103,8 +103,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.56/gnome-online-accounts-3.56.2.tar.xz
-        sha256: ce88df65457f0e63a0d8daff13322e29ecb584197a187f48a3a21be2fcd1c824
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.57/gnome-online-accounts-3.57.0.tar.xz
+        sha256: a038d632627e9e898aef0a1c8f9e74b8df82dbb10087aa7f238398d642d8b81e
         x-checker-data:
           type: gnome
           name: gnome-online-accounts
@@ -114,8 +114,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz
-        sha256: 64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897
+        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.2.tar.xz
+        sha256: 4ec7e5accc9013281bacd6bbc00006be733818b81ba3fe332c1e876c7e1e1477
         x-checker-data:
           type: gnome
           name: gspell
@@ -167,8 +167,8 @@ modules:
       - -DWITH_OPENLDAP=OFF
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.58/evolution-data-server-3.58.2.tar.xz
-        sha256: 6942ecfc39ebb36b0b4363adff00771c1c2dfa34f54e80ec92c3baa3feb020fb
+        url: https://download.gnome.org/sources/evolution-data-server/3.59/evolution-data-server-3.59.1.tar.xz
+        sha256: f4c178f6f87b4a44ddc553da636b7e874eb3ab93661d3f5ca3400ec9cb1c5f50
         x-checker-data:
           type: gnome
           name: evolution-data-server
