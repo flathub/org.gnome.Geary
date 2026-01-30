@@ -103,8 +103,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.56/gnome-online-accounts-3.56.2.tar.xz
-        sha256: ce88df65457f0e63a0d8daff13322e29ecb584197a187f48a3a21be2fcd1c824
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.57/gnome-online-accounts-3.57.0.tar.xz
+        sha256: a038d632627e9e898aef0a1c8f9e74b8df82dbb10087aa7f238398d642d8b81e
         x-checker-data:
           type: gnome
           name: gnome-online-accounts
@@ -114,8 +114,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz
-        sha256: 64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897
+        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.2.tar.xz
+        sha256: 4ec7e5accc9013281bacd6bbc00006be733818b81ba3fe332c1e876c7e1e1477
         x-checker-data:
           type: gnome
           name: gspell
@@ -167,8 +167,8 @@ modules:
       - -DWITH_OPENLDAP=OFF
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.58/evolution-data-server-3.58.2.tar.xz
-        sha256: 6942ecfc39ebb36b0b4363adff00771c1c2dfa34f54e80ec92c3baa3feb020fb
+        url: https://download.gnome.org/sources/evolution-data-server/3.59/evolution-data-server-3.59.2.tar.xz
+        sha256: 15bd798c85dee923462bebe880761b4668b6c5065584e840900988389add83bf
         x-checker-data:
           type: gnome
           name: evolution-data-server
@@ -188,8 +188,8 @@ modules:
       - -Dimport_tool=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.9.tar.xz
-        sha256: 2311b37355c351f33f163fdc394874a22a0a0682c319493d6d8a6e420711415f
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.12.tar.xz
+        sha256: 21f44e2bdabb1ee7f8e41bb996d10ac7daf35c78c498177db0c00f580a20a914
         x-checker-data:
           type: gnome
           name: folks
