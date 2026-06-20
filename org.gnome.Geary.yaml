@@ -134,6 +134,7 @@ modules:
       - -DICAL_BUILD_DOCS=false
       - -DICAL_GLIB=true
       - -DICAL_GLIB_VAPI=true
+      - -DLIBICAL_JAVA_BINDINGS=False
     sources:
       - type: archive
         url: https://github.com/libical/libical/releases/download/v4.0.2/libical-4.0.2.tar.gz
