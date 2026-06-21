@@ -257,10 +257,7 @@ modules:
           type: anitya
           project-id: 230535
           url-template: https://github.com/snowballstem/snowball/archive/refs/tags/v$version.tar.gz
-      - type: patch
-        disabled: true
-        paths:
-          - patches/0001-Make-libstemmer-a-shared-library.patch
+
     build-commands:
       - make -j$FLATPAK_BUILDER_N_JOBS
       - install -Dm644 include/libstemmer.h /app/include/libstemmer.h
