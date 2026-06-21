@@ -258,6 +258,7 @@ modules:
           project-id: 230535
           url-template: https://github.com/snowballstem/snowball/archive/refs/tags/v$version.tar.gz
       - type: patch
+        disabled: true
         paths:
           - patches/0001-Make-libstemmer-a-shared-library.patch
     build-commands:
