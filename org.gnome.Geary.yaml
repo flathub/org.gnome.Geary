@@ -103,8 +103,8 @@ modules:
       - /share/GConf
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gnome-online-accounts/3.56/gnome-online-accounts-3.56.2.tar.xz
-        sha256: ce88df65457f0e63a0d8daff13322e29ecb584197a187f48a3a21be2fcd1c824
+        url: https://download.gnome.org/sources/gnome-online-accounts/3.58/gnome-online-accounts-3.58.1.tar.xz
+        sha256: 9ec1900cc51409c2067c07c828c10be06fe3bf68d2999bb72d7d5ed325ed9bbc
         x-checker-data:
           type: gnome
           name: gnome-online-accounts
@@ -114,8 +114,8 @@ modules:
     buildsystem: meson
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.0.tar.xz
-        sha256: 64ea1d8e9edc1c25b45a920e80daf67559d1866ffcd7f8432fecfea6d0fe8897
+        url: https://download.gnome.org/sources/gspell/1.14/gspell-1.14.4.tar.xz
+        sha256: e73a89d68c70f8748aefb6b0f5cfdfec3ff173cf4449837fd6cb17d1e9fcf486
         x-checker-data:
           type: gnome
           name: gspell
@@ -136,8 +136,8 @@ modules:
       - -DICAL_GLIB_VAPI=true
     sources:
       - type: archive
-        url: https://github.com/libical/libical/releases/download/v3.0.20/libical-3.0.20.tar.gz
-        sha256: e73de92f5a6ce84c1b00306446b290a2b08cdf0a80988eca0a2c9d5c3510b4c2
+        url: https://github.com/libical/libical/releases/download/v4.0.4/libical-4.0.4.tar.gz
+        sha256: c851cdb46da5e6397881dafaa592c5516fb49da05dd1bb095f711a6d20eac422
         x-checker-data:
           type: anitya
           project-id: 1637
@@ -167,8 +167,8 @@ modules:
       - -DWITH_OPENLDAP=OFF
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/evolution-data-server/3.58/evolution-data-server-3.58.2.tar.xz
-        sha256: 6942ecfc39ebb36b0b4363adff00771c1c2dfa34f54e80ec92c3baa3feb020fb
+        url: https://download.gnome.org/sources/evolution-data-server/3.61/evolution-data-server-3.61.2.tar.xz
+        sha256: be0415353e388c2eed844a464391b43f07b47e3e1e937a3f364592f008b651fb
         x-checker-data:
           type: gnome
           name: evolution-data-server
@@ -188,8 +188,8 @@ modules:
       - -Dimport_tool=false
     sources:
       - type: archive
-        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.9.tar.xz
-        sha256: 2311b37355c351f33f163fdc394874a22a0a0682c319493d6d8a6e420711415f
+        url: https://download.gnome.org/sources/folks/0.15/folks-0.15.12.tar.xz
+        sha256: 21f44e2bdabb1ee7f8e41bb996d10ac7daf35c78c498177db0c00f580a20a914
         x-checker-data:
           type: gnome
           name: folks
