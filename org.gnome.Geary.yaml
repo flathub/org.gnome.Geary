@@ -278,6 +278,26 @@ modules:
           project-id: 10152
           url-template: http://people.freedesktop.org/~mccann/dist/sound-theme-freedesktop-$version.tar.bz2
 
+  # Geary dependency: libunwind 1.8.x crashes while reading MiniDebugInfo
+  # (.gnu_debugdata) sections, which runtime libraries carry. Bundle it with
+  # that support disabled until a fixed release reaches the runtime.
+  # See https://gitlab.gnome.org/GNOME/geary/-/work_items/1694
+  - name: libunwind
+    config-opts:
+      - --disable-tests
+      - --disable-documentation
+      - --disable-minidebuginfo
+    cleanup:
+      - /bin
+    sources:
+      - type: archive
+        url: https://github.com/libunwind/libunwind/releases/download/v1.8.3/libunwind-1.8.3.tar.gz
+        sha256: be30d910e67f58d82e753231f1357f326a1a088acf126b21ff77e60aab19b90b
+        x-checker-data:
+          type: anitya
+          project-id: 1748
+          url-template: https://github.com/libunwind/libunwind/releases/download/v$version/libunwind-$version.tar.gz
+
   - name: geary
     buildsystem: meson
     config-opts:
